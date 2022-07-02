@@ -1,0 +1,33 @@
+$fold: 319px;
+$tablet: 481px;
+$laptop: 1025px;
+$desktop: 1500px;
+
+/* RESPONSIVE */
+@mixin fold {
+    @media(max-width: $fold){
+        @content;
+    }
+}
+//phone
+@mixin tablet {
+    @media(min-width: $tablet){ 
+        @content;
+    }
+}
+@mixin laptop {
+    @media(min-width: $laptop){ 
+        @content;
+    }
+}
+@mixin desktop {
+    @media(min-width: $desktop){
+        @content;
+    }
+}
+
+@mixin custom($min-width) {
+    @media(min-width: $min-width){
+        @content;
+    }
+}

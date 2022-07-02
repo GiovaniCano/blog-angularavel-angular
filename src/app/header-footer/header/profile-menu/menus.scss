@@ -1,0 +1,35 @@
+@import 'variables';
+@import 'mixins';
+
+.menu-area {
+    z-index: 3;
+    position: absolute;
+    padding: .5rem 5rem 5rem 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    @include laptop {
+        left: initial;
+        transform: translate(-5rem);
+    }
+    // background-color: rgba(25,25,25,.25); //debug
+    
+    .menu {
+        background-color: $white;
+        color: $black1;
+        padding: 1.5rem;
+        box-shadow: $shadow-sm;
+        border-radius: 6px;
+
+        li {
+            margin-top: 1rem;
+            white-space: nowrap;
+            &:first-child {
+                margin-top: 0;
+            }
+    
+            a {
+                padding: .5rem 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+@import 'variables';
+/* 1rem y borderbox */
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+body { 
+    font-size: 16px;
+    margin: 0;
+    background-color: $pageBg;
+}
+*, *:before, *:after { box-sizing: inherit; }
+
+a, button{
+    cursor: pointer;
+}
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    color: inherit;
+}
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}

@@ -1,0 +1,59 @@
+<header class="container-md">
+    <div id="left-header">
+        <a id="logo">
+            <img
+            width="40" alt="Angular Logo"
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+            />
+            <span>Ng-Blog</span>
+        </a>
+        <nav id="nav">
+            <a >Home</a>
+            <app-categories-menu></app-categories-menu>
+        </nav>
+    </div>
+
+    <nav *ngIf="!logged" id="login">
+        <a >Login</a>
+        <a >Signup</a>
+    </nav>
+
+    <div *ngIf="logged">
+        <app-profile-menu></app-profile-menu>
+    </div>
+
+    <button type="button" id="mobile-menu-button" (click)="showMobileMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="36" height="36" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+    </button>
+
+</header>
+
+<div *ngIf="mobileMenu" id="mobile-menu">
+    <button type="button" (click)="closeMobileMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="36" height="36" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+    </button>
+    <nav>
+        <ul class="no-list-style">
+            <div>
+                <li><a >Home</a></li>
+                <li><app-categories-menu></app-categories-menu></li>
+            </div>
+            <div *ngIf="!logged" id="login">
+                <li><a >Login</a></li>
+                <li><a >Signup</a></li>
+            </div>
+            <div *ngIf="logged">
+                <li><app-profile-menu></app-profile-menu></li>
+            </div>
+        </ul>
+    </nav>
+</div>

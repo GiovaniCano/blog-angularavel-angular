@@ -1,0 +1,56 @@
+@import 'variables';
+@import 'mixins';
+
+:host {
+    position: relative;
+    
+    &:hover {
+        color: $red;
+        .img {            
+            border: 2px solid $red;
+        }
+    }
+
+    a:hover, button:hover {
+        color: $red;
+    }
+}
+:host-context(header) {        
+    display: none;
+    @include laptop {
+        display: block;
+    }
+}
+
+li {
+    text-align: center;
+}
+hr {border: 1px solid $grey-light;}
+
+button {
+    display: flex;
+    align-items: center;
+
+    span {
+        overflow-wrap: anywhere;
+    }
+}
+
+.img {
+    border-radius: 90px;
+    overflow: hidden;
+    border: 2px solid $white;
+    margin-right: .8rem;
+    width: 4rem;
+}
+
+svg {
+    margin-left: .5rem;
+}
+
+div.menu-area {
+    @include laptop {
+        right: 0;
+        transform: translate(5rem);
+    }
+}

@@ -1,0 +1,22 @@
+@import 'variables';
+@import 'mixins';
+
+:host {
+    position: relative;
+
+    &:hover {
+        color: $red;
+    }
+    
+    a:hover, button:hover {
+        color: $red;
+    }
+}
+
+button {
+    display: flex;
+    align-items: center;
+    :first-child {
+        margin-right: .5rem;
+    }
+}

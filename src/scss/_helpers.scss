@@ -1,0 +1,44 @@
+.container {
+    margin: 0 auto;
+    padding: 4rem 0;
+    max-width: 1200px;
+    width: 98%;
+}
+.container-md {
+    @extend .container;
+    max-width: 1000px;
+}
+.container-sm {
+    @extend .container;
+    max-width: 700px;
+}
+
+.centered {margin: 0 auto;}
+.db {display: block;}
+.no-scroll {
+    overflow: hidden !important;
+}
+.no-list-style {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.no-link-style {
+    text-decoration: none;
+    color: inherit;
+}
+
+.text-center {text-align: center;}
+.ucase {
+    text-transform: uppercase;
+}
+
+.hidden {
+    display: none !important;
+}
+.invisible {
+    visibility: hidden !important;
+}
+.transparent {
+    opacity: 0 !important;
+}
