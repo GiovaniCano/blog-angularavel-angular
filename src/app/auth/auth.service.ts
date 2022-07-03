@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { GenericResponse } from '../app-types';
+import { Credentials } from '../app-types';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,12 @@ export class AuthService {
 
   constructor(private _http: HttpClient) { }
 
-  register(body: {}): Observable<GenericResponse> {
+  login(credentials: Credentials): Observable<any> {
+    const url = this.baseApiUrl + 'login'
+    return this._http.post(url, credentials)
+  }
+
+  register(body: {}): Observable<any> {
     const url = this.baseApiUrl + 'register'
     return this._http.post(url, body)
   }
