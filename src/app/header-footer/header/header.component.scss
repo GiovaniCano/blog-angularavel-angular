@@ -1,6 +1,10 @@
 @import 'variables';
 @import 'mixins';
 
+.active-route {
+    color: $red;
+}
+
 :host {
     background-color: $blue;
     min-height: 6rem;

@@ -1,2 +1,70 @@
 @import 'variables';
 @import 'mixins';
+
+.auth-form {
+    background-color: $white;
+    border-radius: 0 0 2rem 2rem;
+    box-shadow: $shadow;
+
+    .title {
+        h1{
+            text-align: center;
+            margin: 0;
+            padding: .5rem;
+            color: $white;
+            font-weight: 500;
+        }
+        background: $blue-trans;
+        background: radial-gradient(farthest-corner at 90px 36px, $blue-trans 0%, $white 160%);
+    }
+
+    form {        
+        padding: 3.5rem;
+
+        .field {
+            margin-bottom: 3.5rem;
+        }
+        .input {
+            display: flex;
+            align-items: center;
+            border: 1px solid $blue-light;
+            background-color: $blue-light-inputs;
+            margin-bottom: .5rem;
+        }
+        input:not([type="submit"]) {
+            border: none;
+            outline: none;
+            width: 100%;
+            background-color: transparent;
+            padding: 1rem;
+
+            &::placeholder {
+                color: $blue-light;
+
+            }
+        }
+            
+        .icon {
+            padding: 0 1rem;
+        }
+        svg {
+            width: 2rem;
+            fill: $blue-light;
+        }
+    }
+}
+
+/* typo */
+form {
+    span {
+        color: $red;
+        font-size: 14px;
+    }
+
+    input:not([type="submit"]) {
+        font-size: 1.8rem;
+        &::placeholder {
+            font-size: 1.8rem;
+        }
+    }
+}

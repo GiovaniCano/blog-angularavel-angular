@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './posts/index.component';
 
 const routes: Routes = [
-  {path: '', component: IndexComponent},
+  { path: '', component: IndexComponent },
+  { path: '', loadChildren: ()=>import('./auth/signup/signup.module').then(m=>m.SignupModule) },
 ];
 
 @NgModule({

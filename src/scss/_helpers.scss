@@ -10,7 +10,7 @@
 }
 .container-sm {
     @extend .container;
-    max-width: 700px;
+    max-width: 450px;
 }
 
 .centered {margin: 0 auto;}
@@ -41,4 +41,54 @@
 }
 .transparent {
     opacity: 0 !important;
+}
+
+
+/* BUTTONS */
+.btn-1 {
+    background: $blue-trans;
+    background: radial-gradient(farthest-corner at 30px 36px, $blue-trans 0%, $white 180%);
+    border: none;
+    color: $white;
+    padding: 8px 16px;
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+
+    &:hover {
+        background: radial-gradient(farthest-corner at 80px 15px, darken($blue-trans, 10) 0%, darken($white, 10) 180%);
+        box-shadow: $shadow-sm;
+    }
+
+    &.disabled {
+        background: $grey;
+        background: radial-gradient(farthest-corner at 30px 36px, $grey 0%, $white 180%);
+        &:hover {            
+            box-shadow: none;
+        }
+    }
+}
+
+.btn-2 {
+    background: $blue-trans;
+    background: radial-gradient(farthest-corner at 30px 36px, $blue-trans 0%, $white 180%);
+    border: none;
+    color: $white;
+    padding: 8px 16px;
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+
+    &:hover {
+        background: radial-gradient(farthest-corner at 80px 15px, darken($blue-trans, 10) 0%, darken($white, 10) 180%);
+        box-shadow: $shadow-sm;
+    }
+
+    &.disabled {
+        background: $grey;
+        background: radial-gradient(farthest-corner at 30px 36px, $grey 0%, $white 180%);
+        &:hover {            
+            box-shadow: none;
+        }
+    }
 }
