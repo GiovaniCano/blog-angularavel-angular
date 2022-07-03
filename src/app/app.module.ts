@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { CategoriesMenuComponent } from './header-footer/header/categories-menu/
 import { ProfileMenuComponent } from './header-footer/header/profile-menu/profile-menu.component';
 import { IndexComponent } from './posts/index.component';
 import { AuthModule } from './auth/auth.module';
+import { WithCredentialsInterceptor } from './auth/with-credentials.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,15 @@ import { AuthModule } from './auth/auth.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     RouterModule,
-    AuthModule
+    HttpClientModule,
+    AuthModule,
+    
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: WithCredentialsInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

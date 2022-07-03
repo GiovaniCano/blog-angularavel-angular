@@ -1,6 +1,6 @@
 export class User {
     id: number
-    username: string
+    name: string
     avatar: string
     description: string
     email: string
@@ -10,7 +10,7 @@ export class User {
 
     constructor(args: {
         id?: number
-        username?: string
+        name?: string
         avatar?: string
         description?: string
         email?: string
@@ -19,7 +19,7 @@ export class User {
         updated_at?: string
     } = {}) {
         this.id = args.id ?? 0
-        this.username = args.username ?? ''
+        this.name = args.name ?? ''
         this.avatar = args.avatar ?? ''
         this.description = args.description ?? ''
         this.email = args.email ?? ''
