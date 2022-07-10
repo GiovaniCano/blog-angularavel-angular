@@ -1,8 +1,8 @@
-import { User } from "./models/User"
-
-export interface GenericResponse {
-    msg?: string
-    data?: {} | User
+export interface Session {
+    isLogged: boolean
+    isVerified: boolean
+    userName: string
+    userAvatar: string | null
 }
 
 export interface Credentials {

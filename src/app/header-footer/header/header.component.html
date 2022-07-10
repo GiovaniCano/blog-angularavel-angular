@@ -13,13 +13,13 @@
         </nav>
     </div>
 
-    <nav *ngIf="!logged" id="login">
+    <nav *ngIf="!(isLogged$ | async)" id="login">
         <a class="no-link-style" routerLink="login" routerLinkActive="active-route">Login</a>
         <a class="no-link-style" routerLink="signup" routerLinkActive="active-route">Signup</a>
     </nav>
 
-    <div *ngIf="logged">
-        <app-profile-menu></app-profile-menu>
+    <div *ngIf="isLogged$ | async">
+        <app-profile-menu [name]="name" [avatar]="avatar"></app-profile-menu>
     </div>
 
     <button type="button" id="mobile-menu-button" (click)="showMobileMenu()">
@@ -47,12 +47,12 @@
                 <li><a class="no-link-style" routerLink="" routerLinkActive="active-route" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
                 <li><app-categories-menu></app-categories-menu></li>
             </div>
-            <div *ngIf="!logged" id="login">
+            <div *ngIf="!(isLogged$ | async)" id="login">
                 <li><a class="no-link-style" routerLink="login" routerLinkActive="active-route">Login</a></li>
                 <li><a class="no-link-style" routerLink="signup" routerLinkActive="active-route">Signup</a></li>
             </div>
-            <div *ngIf="logged">
-                <li><app-profile-menu></app-profile-menu></li>
+            <div *ngIf="isLogged$ | async">
+                <li> <app-profile-menu [name]="name" [avatar]="avatar"></app-profile-menu></li>
             </div>
         </ul>
     </nav>

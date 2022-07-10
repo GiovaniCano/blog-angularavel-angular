@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Credentials } from 'src/app/app-types';
 import { AuthService } from '../auth.service';
 
@@ -10,7 +11,10 @@ import { AuthService } from '../auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {class: 'container-sm'}
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnDestroy {
+  private csrfSubs?: Subscription
+  private loginSubs?: Subscription
+
   form = new FormGroup({
     email: new FormControl('lorem@ipsum.com'),
     password: new FormControl('qQ@12345'),
@@ -18,21 +22,16 @@ export class LoginComponent implements OnInit {
 
   constructor(private _authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
-
   onSubmit() {
     const credentials = this.form.value as Credentials
 
-    const csrfSubs = this._authService.getCsrfToken().subscribe({
-      next: res=>{
-        console.log('csrf')
-        const loginSubs = this._authService.login(credentials).subscribe({
-          next: res=>console.log(res),
-          error: error=>console.error(error),
-        })
-      },
-      error: error=>console.error(error),
-    })
+    this.csrfSubs = this._authService.getCsrfToken().subscribe(
+      () => this.loginSubs = this._authService.login(credentials).subscribe()
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.csrfSubs?.unsubscribe()
+    this.loginSubs?.unsubscribe()
   }
 }

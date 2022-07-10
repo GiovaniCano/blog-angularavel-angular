@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
 
 import { SignupComponent } from './signup.component';
+import { mkTitle } from 'src/app/helpers';
 
 const routes: Route[] = [
-  { path: 'signup', component: SignupComponent }
+  { title:mkTitle('SignUp'), path: 'signup', component: SignupComponent }
 ]
 
 @NgModule({
