@@ -87,10 +87,10 @@ export class AuthService {
   logout(): Observable<any> {
     const url = this.baseApiUrl + 'logout'
     return this._http.post(url, {}).pipe(
-      tap(() => {
+      tap({finalize:()=>{
         this.setSession(false)
         this._router.navigate([''])
-      })
+      }})
     )
   }
 }

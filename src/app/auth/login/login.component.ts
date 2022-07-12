@@ -18,6 +18,7 @@ export class LoginComponent implements OnDestroy {
   form = new FormGroup({
     email: new FormControl('lorem@ipsum.com'),
     password: new FormControl('qQ@12345'),
+    remember: new FormControl(false),
   })
 
   constructor(private _authService: AuthService) { }
