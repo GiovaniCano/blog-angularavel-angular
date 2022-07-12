@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Renderer2 } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable, share, tap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { environment } from 'src/environments/environment';
 
@@ -12,11 +12,11 @@ import { environment } from 'src/environments/environment';
 export class HeaderComponent {  
   isLogged$: Observable<boolean> = this._authService.session$.pipe(
     tap(session => {
-      this.name = session.userName
-      this.avatar = environment.API_BASE_URL + 'user/avatar/' + session.userAvatar
+      this.name = session.name
+      this.avatar = session.avatar ? environment.API_BASE_URL + 'user/avatar/' + session.avatar : null
     }),
     map(session => session.isLogged)
-  )
+  ).pipe(share())
   name:string = ''
   avatar:string|null = null
 

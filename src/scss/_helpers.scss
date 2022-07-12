@@ -52,7 +52,9 @@
     color: $white;
     padding: 8px 16px;
     display: block;
+    width:fit-content;
     font-size: 2rem;
+    text-decoration: none;
     cursor: pointer;
 
     &:hover {
@@ -60,9 +62,10 @@
         box-shadow: $shadow-sm;
     }
 
-    &.disabled {
+    &:disabled {
         background: $grey;
         background: radial-gradient(farthest-corner at 30px 36px, $grey 0%, $white 180%);
+        cursor: unset;
         &:hover {            
             box-shadow: none;
         }
@@ -76,7 +79,9 @@
     color: $white;
     padding: 8px 16px;
     display: block;
+    width:fit-content;
     font-size: 2rem;
+    text-decoration: none;
     cursor: pointer;
 
     &:hover {
@@ -84,9 +89,10 @@
         box-shadow: $shadow-sm;
     }
 
-    &.disabled {
+    &:disabled {
         background: $grey;
         background: radial-gradient(farthest-corner at 30px 36px, $grey 0%, $white 180%);
+        cursor: unset;
         &:hover {            
             box-shadow: none;
         }

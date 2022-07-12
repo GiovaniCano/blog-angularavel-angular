@@ -1,0 +1,22 @@
+@import 'variables';
+
+:host {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    background-color: $white;
+    padding: 3.5rem;
+    box-shadow: $shadow;
+    border-radius: 2rem;
+
+    p{
+        margin: 0 0 3.5rem 0;
+        span {
+            color: $blue;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+@import 'variables';
+
+:host {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+main {
+    width: 100%;
+    background-color: $white;
+    padding: 3.5rem;
+    box-shadow: $shadow;
+    border-radius: 2rem;
+
+    .success {
+        color: $blue;
+    }
+
+    .fail {
+        margin: 0 0 2rem 0;
+    }
+}

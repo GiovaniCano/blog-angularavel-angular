@@ -1,8 +1,9 @@
 export interface Session {
     isLogged: boolean
     isVerified: boolean
-    userName: string
-    userAvatar: string | null
+    name: string
+    avatar: string | null
+    email: string
 }
 
 export interface Credentials {

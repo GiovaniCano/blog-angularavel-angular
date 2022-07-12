@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, EMPTY, Observable, share, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Credentials, Session } from '../app-types';
 import { User } from '../models/User';
@@ -12,20 +12,22 @@ import { User } from '../models/User';
 export class AuthService {
   private baseApiUrl: string = environment.API_BASE_URL
 
-  private session = new BehaviorSubject<Session>({
+  private _session = new BehaviorSubject<Session>({
     isLogged: false,
     isVerified: false,
-    userName: '',
-    userAvatar: null
+    name: '',
+    avatar: null,
+    email: ''
   })
-  public session$ = this.session.asObservable().pipe(share())
+  public session$ = this._session.asObservable()
 
   private setSession(isLogged: boolean, user?: User): void {
-    this.session.next({
+    this._session.next({
       isLogged: isLogged,
       isVerified: user?.email_verified_at ? true : false,
-      userName: user?.name ?? '',
-      userAvatar: user?.avatar ?? null
+      name: user?.name ?? '',
+      avatar: user?.avatar ?? null,
+      email: user?.email ?? '',
     })
   }
 
@@ -36,18 +38,24 @@ export class AuthService {
     this._http.get<User>(url).pipe(
       tap(user => {
         this.setSession(true, user)
-      }), catchError(error => {
-        const code = error.status
-        if (code === 401 || code === 419) {
-          this.setSession(false)
-          return EMPTY
-        } else if (code === 403 && error.error?.message == 'Your email address is not verified.') {
-          this._router.navigate(['']) //to email verify
+      }), 
+      catchError(error => {
+        if (error.status === 401 || error.status === 419) {
           return EMPTY
         }
         return throwError(() => error)
       })
     ).subscribe()
+  }
+
+  sendVerificationEmail(): Observable<any> {
+    const url = this.baseApiUrl + 'email/verification-notification'
+    return this._http.post(url, {})
+  }
+
+  emailVerify(token:string): Observable<any> {
+    const url = this.baseApiUrl + 'email/verify'
+    return this._http.post(url, {token: token})
   }
 
   login(credentials: Credentials): Observable<any> {
@@ -66,7 +74,7 @@ export class AuthService {
     return this._http.post<User>(url, body).pipe(tap(
       user => {
         this.setSession(true, user)
-        this._router.navigate(['']) //to email verify
+        this._router.navigate(['email/notification'])
       }
     ))
   }
