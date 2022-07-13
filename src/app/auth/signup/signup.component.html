@@ -11,7 +11,8 @@
                       </svg>
                 </div>
             </div>
-            <!-- <span>This field is required</span> -->
+            <app-forms-error-msg [control]="email"></app-forms-error-msg>
+            <span class="pending-msg" *ngIf="(email.statusChanges | async) === 'PENDING'">Checking availability...</span>
         </div><!--field-->
 
         <div class="field">
@@ -23,33 +24,36 @@
                       </svg>
                 </div>
             </div>
-            <!-- <span>This field is required</span> -->
+            <app-forms-error-msg [control]="name"></app-forms-error-msg>
+            <span class="pending-msg" *ngIf="(name.statusChanges | async) === 'PENDING'">Checking availability...</span>
         </div><!--field-->
 
-        <div class="field">
-            <div class="input">
-                <input formControlName="password" type="password" placeholder="Password">
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                      </svg>
+        <div [formGroup]="passwordsGroup">
+            <div class="field">
+                <div class="input">
+                    <input formControlName="password" type="password" placeholder="Password">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                          </svg>
+                    </div>
                 </div>
-            </div>
-            <!-- <span>This field is required</span> -->
-        </div><!--field-->
-
-        <div class="field">
-            <div class="input">
-                <input formControlName="password_confirmation" type="password" placeholder="Repeat your password">
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                      </svg>
+                <app-forms-error-msg [control]="password"></app-forms-error-msg>
+            </div><!--field-->
+            
+            <div class="field">
+                <div class="input" [appPasswordConfirmationError]="passwordsGroup">
+                    <input formControlName="password_confirmation" type="password" placeholder="Repeat your password">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                          </svg>
+                    </div>
                 </div>
-            </div>
-            <!-- <span>This field is required</span> -->
-        </div><!--field-->
+                <app-forms-error-msg [control]="passwordsGroup"></app-forms-error-msg>
+            </div><!--field-->
+        </div>
 
-        <input type="submit" class="btn-1 centered" value="Sign Up" (click)="onSubmit()">
+        <input type="submit" class="btn-1 centered" value="Sign Up" (click)="onSubmit()" [disabled]="(form.statusChanges | async) !== 'VALID'">
     </form>
 </main>

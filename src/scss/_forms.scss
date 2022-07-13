@@ -30,6 +30,16 @@
             border: 1px solid $blue-light;
             background-color: $blue-light-inputs;
             margin-bottom: .5rem;
+
+            &.error {
+                border-color: $red;
+                input::placeholder { color: $red; }
+                svg { fill: $red; }
+            }
+        }
+        .pending-msg {
+            font-size: 16px;
+            color: $grey;
         }
         input:not([type="submit"]) {
             border: none;
@@ -40,7 +50,6 @@
 
             &::placeholder {
                 color: $blue-light;
-
             }
         }
             

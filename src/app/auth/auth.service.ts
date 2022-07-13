@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, EMPTY, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Credentials, Session } from '../app-types';
+import { Credentials, RegisterCredentials, Session } from '../app-types';
 import { User } from '../models/User';
 
 @Injectable({
@@ -69,7 +69,7 @@ export class AuthService {
     ))
   }
 
-  register(body: {}): Observable<any> {
+  register(body: RegisterCredentials): Observable<any> {
     const url = this.baseApiUrl + 'register'
     return this._http.post<User>(url, body).pipe(tap(
       user => {
@@ -92,5 +92,14 @@ export class AuthService {
         this._router.navigate([''])
       }})
     )
+  }
+
+  isEmailAvailable(email: string): Observable<boolean> {
+    const url = this.baseApiUrl + 'forms/isEmailAvailable'
+    return this._http.post<boolean>(url, {email: email})
+  }
+  isNameAvailable(name: string): Observable<boolean> {
+    const url = this.baseApiUrl + 'forms/isUsernameAvailable'
+    return this._http.post<boolean>(url, {name: name})
   }
 }

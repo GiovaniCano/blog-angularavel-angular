@@ -11,3 +11,10 @@ export interface Credentials {
     password: string
     remember?: boolean
 }
+
+export interface RegisterCredentials {
+    email: string
+    name: string
+    password: string
+    password_confirmation: string
+}
