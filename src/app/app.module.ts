@@ -12,6 +12,7 @@ import { ProfileMenuComponent } from './header-footer/header/profile-menu/profil
 import { IndexComponent } from './posts/index.component';
 import { AuthModule } from './auth/auth.module';
 import { WithCredentialsInterceptor } from './auth/with-credentials.interceptor';
+import { SessionExpiredInterceptor } from './auth/guards/session-expired.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { WithCredentialsInterceptor } from './auth/with-credentials.interceptor'
     AppRoutingModule,
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: WithCredentialsInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: WithCredentialsInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: SessionExpiredInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

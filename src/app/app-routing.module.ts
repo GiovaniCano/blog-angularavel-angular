@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { mkTitle } from './helpers';
+import { mT } from './helpers';
 
 import { LoginComponent } from './auth/login/login.component';
 import { IndexComponent } from './posts/index.component';
+import { RedirectIfLoggedGuard } from './auth/guards/redirect-if-logged.guard';
 
 const routes: Routes = [
-  { title:mkTitle('Home'), path: '', component: IndexComponent },
-  { title:mkTitle('Login'), path: 'login', component: LoginComponent },
+  { title: mT('Home'), path: '', component: IndexComponent },
+  { title: mT('Login'), path: 'login', component: LoginComponent, canActivate: [RedirectIfLoggedGuard] },
 
-  { path: '', loadChildren: ()=>import('./auth/signup/signup.module').then(m=>m.SignupModule) },
+  { path: '', loadChildren: () => import('./auth/signup/signup.module').then(m => m.SignupModule) },
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, EMPTY, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Credentials, RegisterCredentials, Session } from '../app-types';
 import { User } from '../models/User';
@@ -17,7 +17,8 @@ export class AuthService {
     isVerified: false,
     name: '',
     avatar: null,
-    email: ''
+    email: '',
+    firstLoad: true
   })
   public session$ = this._session.asObservable()
 
@@ -28,22 +29,30 @@ export class AuthService {
       name: user?.name ?? '',
       avatar: user?.avatar ?? null,
       email: user?.email ?? '',
+      firstLoad: false
     })
   }
 
+  public isFirstLoad(): boolean {
+    return this._session.getValue().firstLoad
+  }
+  private _waitFirstLoadForGuard = new Subject<never>()
+  public waitFirstLoadForGuard$ = this._waitFirstLoadForGuard.asObservable()
+
   constructor(private _http: HttpClient, private _router: Router) { }
 
-  verifyLogin(): void {
+  firstLoadVerifyLogin(): void {
     const url = this.baseApiUrl + 'user/current'
-    this._http.get<User>(url).pipe(
-      tap(user => {
-        this.setSession(true, user)
-      }), 
-      catchError(error => {
-        if (error.status === 401 || error.status === 419) {
-          return EMPTY
-        }
-        return throwError(() => error)
+    this._http.get<User>(url, {headers: {skipCheckIfSessionExpired: "true"}}).pipe(
+      tap({
+        next: user => {
+          this.setSession(true, user)
+          this._waitFirstLoadForGuard.complete()
+        },
+        error: () => {
+          this.setSession(false)
+          this._waitFirstLoadForGuard.complete()
+        },
       })
     ).subscribe()
   }
@@ -53,9 +62,9 @@ export class AuthService {
     return this._http.post(url, {})
   }
 
-  emailVerify(token:string): Observable<any> {
+  emailVerify(token: string): Observable<any> {
     const url = this.baseApiUrl + 'email/verify'
-    return this._http.post(url, {token: token})
+    return this._http.post(url, { token: token })
   }
 
   login(credentials: Credentials): Observable<any> {
@@ -87,19 +96,26 @@ export class AuthService {
   logout(): Observable<any> {
     const url = this.baseApiUrl + 'logout'
     return this._http.post(url, {}).pipe(
-      tap({finalize:()=>{
-        this.setSession(false)
-        this._router.navigate([''])
-      }})
+      tap({
+        finalize: () => {
+          this.setSession(false)
+          this._router.navigate([''])
+        }
+      })
     )
+  }
+
+  expireSession(): void {
+    this.setSession(false)
+    this._router.navigate(['login'])
   }
 
   isEmailAvailable(email: string): Observable<boolean> {
     const url = this.baseApiUrl + 'forms/isEmailAvailable'
-    return this._http.post<boolean>(url, {email: email})
+    return this._http.post<boolean>(url, { email: email })
   }
   isNameAvailable(name: string): Observable<boolean> {
     const url = this.baseApiUrl + 'forms/isUsernameAvailable'
-    return this._http.post<boolean>(url, {name: name})
+    return this._http.post<boolean>(url, { name: name })
   }
 }
