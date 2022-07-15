@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map, Observable, Subscription } from 'rxjs';
 import { Credentials } from 'src/app/app-types';
 import { AuthService } from '../auth.service';
 
@@ -9,11 +10,15 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {class: 'container-sm'}
+  host: { class: 'container-sm' }
 })
 export class LoginComponent implements OnDestroy {
   private csrfSubs?: Subscription
   private loginSubs?: Subscription
+
+  expired$: Observable<boolean> = this._route.queryParams.pipe(
+    map(params => params['expired'] === '1' ? true : false)
+  )
 
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -21,12 +26,12 @@ export class LoginComponent implements OnDestroy {
     remember: new FormControl(false),
   })
 
-  get email() {return this.form.controls.email}
-  get password() {return this.form.controls.password}
+  get email() { return this.form.controls.email }
+  get password() { return this.form.controls.password }
 
-  errorMsg:string = ''
+  errorMsg: string = ''
 
-  constructor(private _authService: AuthService, private _cd: ChangeDetectorRef) { }
+  constructor(private _authService: AuthService, private _route: ActivatedRoute, private _cd: ChangeDetectorRef) { }
 
   onSubmit() {
     this.form.markAsPending()
@@ -35,8 +40,8 @@ export class LoginComponent implements OnDestroy {
     this.csrfSubs = this._authService.getCsrfToken().subscribe(
       () => this.loginSubs = this._authService.login(credentials).subscribe({
         error: err => {
-          this.form.setErrors({invalid:true})
-          if(err.status === 422 || err.status === 429) {
+          this.form.setErrors({ invalid: true })
+          if (err.status === 422 || err.status === 429) {
             this.errorMsg = err.status === 422 ? err.error.message : 'Too Many Attempts, wait a minute.'
             setTimeout(() => {
               this.errorMsg = ''

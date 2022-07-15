@@ -1,3 +1,5 @@
+<p *ngIf="expired$ | async" class="expired">Your session has expired</p>
+
 <main class="auth-form">
     <div class="title"><h1>Log In</h1></div>
     <form [formGroup]="form">        

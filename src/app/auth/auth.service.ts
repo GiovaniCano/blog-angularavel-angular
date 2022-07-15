@@ -43,7 +43,7 @@ export class AuthService {
 
   firstLoadVerifyLogin(): void {
     const url = this.baseApiUrl + 'user/current'
-    this._http.get<User>(url, {headers: {skipCheckIfSessionExpired: "true"}}).pipe(
+    this._http.get<User>(url, { headers: { skipCheckIfSessionExpired: "true" } }).pipe(
       tap({
         next: user => {
           this.setSession(true, user)
@@ -57,9 +57,9 @@ export class AuthService {
     ).subscribe()
   }
 
-  sendPasswordResetEmail(email :string): Observable<any> {
+  sendPasswordResetEmail(email: string): Observable<any> {
     const url = this.baseApiUrl + 'forgot-password'
-    return this._http.post(url, {email: email})
+    return this._http.post(url, { email: email })
   }
   resetPassword(body: {}): Observable<any> {
     const url = this.baseApiUrl + 'reset-password'
@@ -116,7 +116,7 @@ export class AuthService {
 
   expireSession(): void {
     this.setSession(false)
-    this._router.navigate(['/login'])
+    this._router.navigate(['/login'], { queryParams: { expired: 1 } })
   }
 
   isEmailAvailable(email: string): Observable<boolean> {
