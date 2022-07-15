@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-profile-menu',
   templateUrl: './profile-menu.component.html',
-  styleUrls: ['./profile-menu.component.scss', './menus.scss'],
+  styleUrls: ['./profile-menu.component.scss', '../menus.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileMenuComponent implements OnDestroy {
@@ -21,7 +21,7 @@ export class ProfileMenuComponent implements OnDestroy {
     this.showmenu = false
   }
 
-  logoutSubs?: Subscription
+  private logoutSubs?: Subscription
 
   constructor(private _authService: AuthService) { }
 

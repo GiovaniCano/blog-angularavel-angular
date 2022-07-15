@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core'
 @Component({
   selector: 'app-categories-menu',
   templateUrl: './categories-menu.component.html',
-  styleUrls: ['./categories-menu.component.scss', '../profile-menu/menus.scss'],
+  styleUrls: ['./categories-menu.component.scss', '../menus.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesMenuComponent {

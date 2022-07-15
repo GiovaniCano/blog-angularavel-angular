@@ -11,9 +11,9 @@ import { AuthService } from 'src/app/auth/auth.service';
   host: { class: 'container-sm' }
 })
 export class EmailVerifyComponent implements OnInit, OnDestroy {
-  paramsSubs!: Subscription
-  emailVerifySubs?: Subscription
-  sendEmailSubs?: Subscription
+  private paramsSubs!: Subscription
+  private emailVerifySubs?: Subscription
+  private sendEmailSubs?: Subscription
 
   response: boolean = false
   success?: boolean

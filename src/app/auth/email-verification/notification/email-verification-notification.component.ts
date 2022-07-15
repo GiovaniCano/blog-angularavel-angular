@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class EmailVerificationNotificationComponent implements OnInit, OnDestroy {
   email$: Observable<string> = this._authService.session$.pipe(map(session=>session.email))
 
-  emailSubs?: Subscription
+  private emailSubs?: Subscription
 
   buttonIsDisabled:boolean = false
 

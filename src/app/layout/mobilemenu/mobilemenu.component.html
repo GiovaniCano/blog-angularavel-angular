@@ -1,0 +1,22 @@
+<button type="button" (click)="closeMenu()">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="40" height="40" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+</button>
+<nav>
+    <ul class="no-list-style">
+        <div>
+            <li><a class="no-link-style" routerLink="/" routerLinkActive="active-route" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+            <li><app-categories-menu></app-categories-menu></li>
+        </div>
+        <div *ngIf="!(isLogged$ | async)" id="login">
+            <li><a class="no-link-style" routerLink="/login" routerLinkActive="active-route">Login</a></li>
+            <li><a class="no-link-style" routerLink="/signup" routerLinkActive="active-route">Signup</a></li>
+        </div>
+        <div *ngIf="isLogged$ | async">
+            <li><app-profile-menu [name]="name" [avatar]="avatar"></app-profile-menu></li>
+        </div>
+    </ul>
+</nav>

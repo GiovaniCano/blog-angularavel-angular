@@ -1,0 +1,39 @@
+@import 'variables';
+@import 'mixins';
+
+:host {
+    position: fixed;
+    background-color: transparentize($blue, .15);
+    backdrop-filter: blur(2px);
+    color: $white;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 4rem;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include laptop {
+        display: none;
+    }
+
+    button {
+        margin-bottom: 3.5rem;
+    }
+
+    nav div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        * {
+            margin: 0 0 2rem 0;
+        }
+    }
+    ul :first-child {
+        margin-bottom: 3.5rem;
+    }
+}

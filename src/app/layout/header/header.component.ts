@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {  
+export class HeaderComponent{
   isLogged$: Observable<boolean> = this._authService.session$.pipe(
     tap(session => {
       this.name = session.name
@@ -17,8 +17,9 @@ export class HeaderComponent {
     }),
     map(session => session.isLogged)
   ).pipe(share())
-  name:string = ''
-  avatar:string|null = null
+
+  name: string = ''
+  avatar: string | null = null
 
   mobileMenu: boolean = false
 
@@ -29,8 +30,8 @@ export class HeaderComponent {
     this._renderer.addClass(document.body, 'no-scroll')
   }
 
-  closeMobileMenu() {
-    this.mobileMenu = false
+  closeMobileMenu(closeMobileMenu: false) {
+    this.mobileMenu = closeMobileMenu
     this._renderer.removeClass(document.body, 'no-scroll')
   }
 }
