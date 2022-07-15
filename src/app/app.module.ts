@@ -13,6 +13,7 @@ import { IndexComponent } from './posts/index.component';
 import { AuthModule } from './auth/auth.module';
 import { WithCredentialsInterceptor } from './auth/with-credentials.interceptor';
 import { SessionExpiredInterceptor } from './auth/guards/session-expired.interceptor';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SessionExpiredInterceptor } from './auth/guards/session-expired.interce
     CategoriesMenuComponent,
     ProfileMenuComponent,
     IndexComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

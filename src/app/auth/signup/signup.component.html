@@ -57,3 +57,7 @@
         <input type="submit" class="btn-1 centered" value="Sign Up" (click)="onSubmit()" [disabled]="(form.statusChanges | async) !== 'VALID'">
     </form>
 </main>
+<div class="links">
+    <a routerLink="/login" class="btn-2">Log In</a>
+    <a routerLink="/password/forgot" class="btn-2">Forgot Password?</a>
+</div>

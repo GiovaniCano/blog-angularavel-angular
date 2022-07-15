@@ -40,7 +40,7 @@ export class MustBeLoggedGuard implements CanActivate, CanActivateChild, CanLoad
     if(session.isLogged) {
       return true
     } else {
-      return this._router.parseUrl('login')
+      return this._router.parseUrl('/login')
     }
   }
 }

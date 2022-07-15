@@ -38,7 +38,7 @@ export class RedirectIfVerifiedGuard implements CanActivate, CanActivateChild, C
 
   private guard(session: Session): true | UrlTree {
     if(session.isVerified) {
-      return this._router.parseUrl('')
+      return this._router.parseUrl('/')
     } else {
       return true
     }

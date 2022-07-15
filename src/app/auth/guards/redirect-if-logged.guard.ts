@@ -38,7 +38,7 @@ export class RedirectIfLoggedGuard implements CanActivate, CanActivateChild, Can
 
   private guard(session: Session): true | UrlTree {
     if(session.isLogged) {
-      return this._router.parseUrl('')
+      return this._router.parseUrl('/')
     } else {
       return true
     }

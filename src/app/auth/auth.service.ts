@@ -73,7 +73,7 @@ export class AuthService {
       (response: { [key: string]: any }) => {
         const user = response['user'] as User
         this.setSession(true, user)
-        this._router.navigate([''])
+        this._router.navigate(['/'])
       }
     ))
   }
@@ -83,7 +83,7 @@ export class AuthService {
     return this._http.post<User>(url, body).pipe(tap(
       user => {
         this.setSession(true, user)
-        this._router.navigate(['email/notification'])
+        this._router.navigate(['/email/notification'])
       }
     ))
   }
@@ -99,7 +99,7 @@ export class AuthService {
       tap({
         finalize: () => {
           this.setSession(false)
-          this._router.navigate([''])
+          this._router.navigate(['/'])
         }
       })
     )
@@ -107,7 +107,7 @@ export class AuthService {
 
   expireSession(): void {
     this.setSession(false)
-    this._router.navigate(['login'])
+    this._router.navigate(['/login'])
   }
 
   isEmailAvailable(email: string): Observable<boolean> {

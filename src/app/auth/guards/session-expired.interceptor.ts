@@ -25,7 +25,7 @@ export class SessionExpiredInterceptor implements HttpInterceptor {
       tap({ error: error => {
         if(error.status === 401 || error.status === 419) {
           this._authSerivce.expireSession()
-          this._router.navigate(['login'])
+          this._router.navigate(['/login'])
         }
       }})
     )

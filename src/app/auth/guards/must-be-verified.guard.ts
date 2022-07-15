@@ -41,7 +41,7 @@ export class MustBeVerifiedGuard implements CanActivate, CanActivateChild, CanLo
       return true
     } else {
       this._authService.sendVerificationEmail().subscribe()
-      return this._router.parseUrl('email/notification')
+      return this._router.parseUrl('/email/notification')
     }
   }
 }

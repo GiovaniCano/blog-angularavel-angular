@@ -10,7 +10,7 @@
 }
 .container-sm {
     @extend .container;
-    max-width: 450px;
+    max-width: 650px;
 }
 
 .centered {margin: 0 auto;}
@@ -73,10 +73,11 @@
 }
 
 .btn-2 {
-    background: $blue-trans;
-    background: radial-gradient(farthest-corner at 30px 36px, $blue-trans 0%, $white 180%);
-    border: none;
-    color: $white;
+    background: $pageBg;
+    border: 2px solid $blue;
+    color: $blue;
+    border-radius: 12px;
+    white-space: nowrap;
     padding: 8px 16px;
     display: block;
     width:fit-content;
@@ -85,16 +86,15 @@
     cursor: pointer;
 
     &:hover {
-        background: radial-gradient(farthest-corner at 80px 15px, darken($blue-trans, 10) 0%, darken($white, 10) 180%);
         box-shadow: $shadow-sm;
     }
 
-    &:disabled {
-        background: $grey;
-        background: radial-gradient(farthest-corner at 30px 36px, $grey 0%, $white 180%);
-        cursor: unset;
-        &:hover {            
-            box-shadow: none;
-        }
-    }
+    // &:disabled {
+    //     background: $grey;
+    //     background: radial-gradient(farthest-corner at 30px 36px, $grey 0%, $white 180%);
+    //     cursor: unset;
+    //     &:hover {            
+    //         box-shadow: none;
+    //     }
+    // }
 }
