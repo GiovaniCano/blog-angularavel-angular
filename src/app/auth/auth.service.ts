@@ -57,6 +57,15 @@ export class AuthService {
     ).subscribe()
   }
 
+  sendPasswordResetEmail(email :string): Observable<any> {
+    const url = this.baseApiUrl + 'forgot-password'
+    return this._http.post(url, {email: email})
+  }
+  resetPassword(body: {}): Observable<any> {
+    const url = this.baseApiUrl + 'reset-password'
+    return this._http.post(url, body)
+  }
+
   sendVerificationEmail(): Observable<any> {
     const url = this.baseApiUrl + 'email/verification-notification'
     return this._http.post(url, {})

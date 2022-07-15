@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     title: mT('Reset Password'),
-    path: 'reset',
+    path: 'reset/:token',
     component: ResetPasswordComponent
   },
 ]
