@@ -1,44 +1,46 @@
-<p *ngIf="expired$ | async" class="expired">Your session has expired</p>
-
-<main class="form">
-    <div class="title"><h1>Log In</h1></div>
-    <form [formGroup]="form">        
-        <div class="field">
-            <div class="input">
-                <input formControlName="email" type="email" placeholder="E-mail">
-                <div class="icon">
-                    <svg #svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                      </svg>
+<div class="container-sm" id="content">
+    <p *ngIf="expired$ | async" id="expired">Your session has expired</p>
+    
+    <main class="form">
+        <div class="title"><h1>Log In</h1></div>
+        <form [formGroup]="form">
+            <div class="field">
+                <div class="input">
+                    <input formControlName="email" type="email" placeholder="E-mail">
+                    <div class="icon">
+                        <svg #svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                    </div>
                 </div>
-            </div>
-            <app-forms-error-msg [control]="email"></app-forms-error-msg>
-        </div><!--field-->
-
-        <div class="field">
-            <div class="input">
-                <input formControlName="password" type="password" placeholder="Password">
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                      </svg>
+                <app-forms-error-msg [control]="email"></app-forms-error-msg>
+            </div><!--field-->
+    
+            <div class="field">
+                <div class="input">
+                    <input formControlName="password" type="password" placeholder="Password">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                          </svg>
+                    </div>
                 </div>
-            </div>
-            <app-forms-error-msg [control]="password"></app-forms-error-msg>
-        </div><!--field-->
-
-        <label class="remember-field">Remember me
-            <input type="checkbox" formControlName="remember">
-            <span class="checkmark"></span>
-        </label>
-        
-        <p *ngIf="errorMsg && form.invalid" class="invalid-credentials">{{errorMsg}}</p>
-
-        <input type="submit" class="btn-1 centered" value="Log In" (click)="onSubmit()" [disabled]="(form.statusChanges | async) !== 'VALID'">
-    </form>
-</main>
-<div class="links">
-    <a routerLink="/signup" class="btn-2">Sign Up</a>
-    <a routerLink="/password/forgot" class="btn-2">Forgot Password?</a>
+                <app-forms-error-msg [control]="password"></app-forms-error-msg>
+            </div><!--field-->
+    
+            <label class="remember-field">Remember me
+                <input type="checkbox" formControlName="remember">
+                <span class="checkmark"></span>
+            </label>
+    
+            <p *ngIf="errorMsg && form.invalid" class="invalid-credentials">{{errorMsg}}</p>
+    
+            <input type="submit" class="btn-1 centered" value="Log In" (click)="onSubmit()" [disabled]="(form.statusChanges | async) !== 'VALID'">
+        </form>
+    </main>
+    <div id="links">
+        <a routerLink="/signup" class="btn-2">Sign Up</a>
+        <a routerLink="/password/forgot" class="btn-2">Forgot Password?</a>
+    </div>
 </div>

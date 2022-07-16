@@ -1,15 +1,6 @@
 @import 'variables';
 
-:host {
-    display: flex;
-    width: 100%;
-}
-
-.form {
-    width: 100%;
-}
-
-form .links {
+#links {
     display: flex;
     justify-content: space-between;
     margin-top: 3.5rem;

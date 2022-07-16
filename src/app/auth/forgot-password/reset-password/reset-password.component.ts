@@ -9,8 +9,7 @@ import { AuthService } from '../../auth.service';
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'container-sm' }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResetPasswordComponent implements OnDestroy, OnInit {
   private resetSubs?: Subscription

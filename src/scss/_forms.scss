@@ -21,6 +21,12 @@
     form {        
         padding: 3.5rem;
 
+        fieldset {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
         .field {
             margin-bottom: 3.5rem;
         }

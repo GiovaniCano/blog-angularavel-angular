@@ -1,11 +1,5 @@
 @import 'variables';
 
-:host {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
 main {
     width: 100%;
     background-color: $white;

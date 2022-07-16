@@ -7,8 +7,7 @@ import { AuthService } from '../../auth.service';
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'container-sm' }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ForgotPasswordComponent implements OnDestroy {
   private resetSubs?: Subscription

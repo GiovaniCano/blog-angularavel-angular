@@ -1,4 +1,6 @@
-<main>
-    <p class="text-center">We have sent you an email to <span>{{email$ | async}}</span> with instructions to verify your account!</p>
-    <button type="button" class="btn-1 centered" (click)="sendEmail()" [disabled]="buttonIsDisabled">Send me other email</button>
-</main>
+<div id="content" class="container-sm">
+    <main >
+        <p class="text-center">We have sent you an email to <span>{{email$ | async}}</span> with instructions to verify your account!</p>
+        <button type="button" class="btn-1 centered" (click)="sendEmail()" [disabled]="buttonIsDisabled">Send me other email</button>
+    </main>
+</div>

@@ -1,22 +1,15 @@
 @import 'variables';
 
-:host {
-    height: 100%;
-}
-
 div {
     background-color: $white;
-    height: 100%;
     width: 100%;
     border-radius: 2rem;
     box-shadow: $shadow;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
     h1 {
         font-weight: 400;
         color: $blue;
-        margin: 0;
+        margin: 8rem 0;
         text-align: center;
     }
 }

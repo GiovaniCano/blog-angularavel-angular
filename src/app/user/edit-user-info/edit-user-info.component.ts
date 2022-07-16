@@ -11,8 +11,7 @@ import { UserService } from '../user.service';
   selector: 'app-edit-user-info',
   templateUrl: './edit-user-info.component.html',
   styleUrls: ['./edit-user-info.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'container-sm' }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditUserInfoComponent implements OnInit, OnDestroy {
   private userSubs!: Subscription

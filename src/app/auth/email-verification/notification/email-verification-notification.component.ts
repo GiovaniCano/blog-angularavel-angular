@@ -6,8 +6,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   selector: 'app-notification',
   templateUrl: './email-verification-notification.component.html',
   styleUrls: ['./email-verification-notification.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {class: 'container-sm'}
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailVerificationNotificationComponent implements OnInit, OnDestroy {
   email$: Observable<string> = this._authService.session$.pipe(map(session=>session.email))

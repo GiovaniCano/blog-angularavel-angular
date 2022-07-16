@@ -7,8 +7,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   selector: 'app-email-verify',
   templateUrl: './email-verify.component.html',
   styleUrls: ['./email-verify.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'container-sm' }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailVerifyComponent implements OnInit, OnDestroy {
   private paramsSubs!: Subscription

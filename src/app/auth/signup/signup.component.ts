@@ -10,7 +10,6 @@ import { AuthService } from '../auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {class: 'container-sm'}
 })
 export class SignupComponent implements OnDestroy {
   private csrfSubs?: Subscription

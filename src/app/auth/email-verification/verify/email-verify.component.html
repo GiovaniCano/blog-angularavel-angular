@@ -1,11 +1,13 @@
-<main>
-    <p *ngIf="!response; else responses" class="text-center">Loading...</p>
-
-    <ng-template #responses>
-        <p *ngIf="success" class="text-center success">Account succesfully verified!</p>
-        <div *ngIf="!success">
-            <p class="text-center fail">The token is not valid, try again.</p>
-            <button (click)="sendEmail()" class="btn-1 centered">Send me other email</button>
-        </div>
-    </ng-template>
-</main>
+<div id="content" class="container-sm">
+    <main>
+        <p *ngIf="!response; else responses" class="text-center">Loading...</p>
+    
+        <ng-template #responses>
+            <p *ngIf="success" class="text-center success">Account succesfully verified!</p>
+            <div *ngIf="!success">
+                <p class="text-center fail">The token is not valid, try again.</p>
+                <button (click)="sendEmail()" class="btn-1 centered">Send me other email</button>
+            </div>
+        </ng-template>
+    </main>
+</div>

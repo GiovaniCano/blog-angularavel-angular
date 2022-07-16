@@ -1,15 +1,13 @@
 @import 'variables';
 @import 'mixins';
 
-:host {
-    height: 100%;
+#content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-.expired {
+#expired {
     margin: 0;
     margin-bottom: 3rem;
     color: darken($red, 30%);
@@ -31,7 +29,7 @@ form .invalid-credentials {
     margin: 0 0 2.8rem 0;
 }
 
-.links {
+#links {
     width: 100%;
     display: flex;
     flex-direction: column;
