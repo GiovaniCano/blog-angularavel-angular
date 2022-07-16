@@ -8,4 +8,6 @@ export const errorsDictionary: {[key:string]:string} = {
     minlength: 'At leats {n} characters required, current: {n2}',
     alphaNumExtras: 'Only letters, numbers, spaces, dashes, underscores and dots allowed',
     password: 'Password must contain at least 1 lowercase letter, uppercase letter, number and special character',
+    imageType: 'Allowed formats: jpg, jpeg, webp, png',
+    imageSize: 'The image size must be less than 2 Mb',
 }

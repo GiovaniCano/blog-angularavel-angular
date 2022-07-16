@@ -1,0 +1,57 @@
+<main class="form">
+    <div class="title"><h1>Edit Profile</h1></div>
+    <form [formGroup]="form">
+        
+        <div class="field">
+            <label for="">Name</label>
+            <div class="input">
+                <input formControlName="name" type="text" placeholder="Username">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                      </svg>
+                </div>
+            </div>
+            <app-forms-error-msg [control]="name"></app-forms-error-msg>
+            <span class="pending-msg" *ngIf="(name.statusChanges | async) === 'PENDING'">Checking availability...</span>
+        </div><!--field-->
+
+        <div class="field">
+            <label for="">E-mail</label>
+            <div class="input">
+                <input formControlName="email" type="email" placeholder="E-mail" >
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                </div>
+            </div>
+            <app-forms-error-msg [control]="email"></app-forms-error-msg>
+            <span class="pending-msg" *ngIf="(email.statusChanges | async) === 'PENDING'">Checking availability...</span>
+        </div><!--field-->
+
+        <div class="field">
+            <label for="">Description</label>
+            <div class="input">
+                <textarea formControlName="description" placeholder="Description"></textarea>
+            </div>
+            <app-forms-error-msg [control]="description"></app-forms-error-msg>
+        </div><!--field-->
+
+        <div class="field">
+            <label for="">Avatar</label>
+            <div class="input">
+                <input type="file" (change)="onChangeImage($event)" formControlName="avatar">
+            </div>
+            <app-forms-error-msg [control]="avatar"></app-forms-error-msg>
+        </div><!--field-->
+
+        <input type="submit" class="btn-1 centered" value="Update Profile" (click)="onSubmit()" [disabled]="(form.statusChanges | async) !== 'VALID'">
+
+        <div class="links">
+            <a class="btn-2" routerLink="/user/password">Update Password</a>
+            <a class="btn-2" routerLink="/user/delete">Delete Account</a>
+        </div>
+    </form>
+</main>

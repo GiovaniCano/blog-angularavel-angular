@@ -57,6 +57,13 @@ export class AuthService {
     ).subscribe()
   }
 
+  updateUserInfo(body: FormData): Observable<User> {
+    const url = this.baseApiUrl + 'user/profile-information'
+    return this._http.post<User>(url, body).pipe( // _method: put
+      tap(user => this.setSession(true, user))
+    )
+  }
+
   sendPasswordResetEmail(email: string): Observable<any> {
     const url = this.baseApiUrl + 'forgot-password'
     return this._http.post(url, { email: email })

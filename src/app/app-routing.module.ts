@@ -9,11 +9,20 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MustBeLoggedGuard } from './auth/guards/must-be-logged.guard';
 import { RedirectIfVerifiedGuard } from './auth/guards/redirect-if-verified.guard';
+import { EditUserInfoComponent } from './user/edit-user-info/edit-user-info.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { UpdatePasswordComponent } from './user/update-password/update-password.component';
+import { DeleteUserComponent } from './user/delete-user/delete-user.component';
 
 const routes: Routes = [
   { title: mT('Home'), path: '', component: IndexComponent },
   { title: mT('Login'), path: 'login', component: LoginComponent, canActivate: [RedirectIfLoggedGuard] },
   { title: mT('SignUp'), path: 'signup', component: SignupComponent, canActivate: [RedirectIfLoggedGuard] },
+  
+  { title: mT('UserName'), path: 'user/profile/:name', component: UserProfileComponent},
+  { title: mT('Edit Profile'), path: 'user/edit', component: EditUserInfoComponent, canActivate: [MustBeLoggedGuard] },
+  { title: mT('Update Password'), path: 'user/password', component: UpdatePasswordComponent, canActivate: [MustBeLoggedGuard] },
+  { title: mT('Delete Account'), path: 'user/delete', component: DeleteUserComponent, canActivate: [MustBeLoggedGuard] },
 
   {
     path: 'email',

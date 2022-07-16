@@ -20,12 +20,12 @@ export class SignupComponent implements OnDestroy {
     email: new FormControl('', {
       validators: [Validators.required, Validators.email, Validators.maxLength(255), Validators.minLength(5)],
       asyncValidators: isEmailAvailable(this._authService),
-      updateOn: "blur"
+      // updateOn: "blur"
     }),
     name: new FormControl('', {
       validators: [Validators.required, Validators.maxLength(25), Validators.minLength(2), alphaNumExtras],
       asyncValidators: isNameAvailable(this._authService),
-      updateOn: "blur"
+      // updateOn: "blur"
     }),
 
     passwordsGroup: new FormGroup({

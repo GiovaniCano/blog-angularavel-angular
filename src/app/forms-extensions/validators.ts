@@ -1,6 +1,6 @@
 import { AbstractControl, AsyncValidatorFn, FormControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { AuthService } from "../auth/auth.service";
-import { map, Observable } from "rxjs";
+import { delay, map, Observable, of, switchMap } from "rxjs";
 
 export const passwordConfirmation: ValidatorFn = (passwordsGroup: AbstractControl): null | ValidationErrors => {
     const password = passwordsGroup.get('password') as FormControl
@@ -11,15 +11,21 @@ export const passwordConfirmation: ValidatorFn = (passwordsGroup: AbstractContro
 
 export function isEmailAvailable(authService: AuthService): AsyncValidatorFn {
     return function (input: AbstractControl): Observable<ValidationErrors | null> {
-        return authService.isEmailAvailable(input.value).pipe(
-            map(res => res ? null : { isEmailAvailable: true })
+        return of(input.value).pipe(
+            delay(2000),
+            switchMap(email => authService.isEmailAvailable(email).pipe(
+                map(res => res ? null : { isEmailAvailable: true })
+            ))
         )
     }
 }
 export function isNameAvailable(authService: AuthService): AsyncValidatorFn {
     return function (input: AbstractControl): Observable<ValidationErrors | null> {
-        return authService.isNameAvailable(input.value).pipe(
-            map(res => res ? null : { isEmailAvailable: true })
+        return of(input.value).pipe(
+            delay(2000),
+            switchMap(name => authService.isNameAvailable(name).pipe(
+                map(res => res ? null : { isNameAvailable: true })
+            ))
         )
     }
 }
