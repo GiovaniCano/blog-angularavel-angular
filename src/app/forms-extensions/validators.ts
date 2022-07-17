@@ -1,5 +1,5 @@
 import { AbstractControl, AsyncValidatorFn, FormControl, ValidationErrors, ValidatorFn } from "@angular/forms";
-import { AuthService } from "../auth/auth.service";
+import { AuthService } from "../services/auth.service";
 import { delay, map, Observable, of, switchMap } from "rxjs";
 
 export const passwordConfirmation: ValidatorFn = (passwordsGroup: AbstractControl): null | ValidationErrors => {

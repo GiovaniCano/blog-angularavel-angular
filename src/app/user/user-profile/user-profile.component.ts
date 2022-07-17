@@ -3,8 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap, tap } from 'rxjs';
 import { mT } from 'src/app/helpers';
-import { User } from 'src/app/models/User';
-import { UserService } from '../user.service';
+import { User } from 'src/app/models/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-profile',

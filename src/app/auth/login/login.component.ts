@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, Subscription } from 'rxjs';
-import { Credentials } from 'src/app/app-types';
-import { AuthService } from '../auth.service';
+import { Credentials } from 'src/app/interfaces';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',

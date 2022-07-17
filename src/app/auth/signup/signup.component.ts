@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { RegisterCredentials } from 'src/app/app-types';
+import { RegisterCredentials } from 'src/app/interfaces';
 import { alphaNumExtras, isEmailAvailable, isNameAvailable, password, passwordConfirmation } from 'src/app/forms-extensions/validators';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup',

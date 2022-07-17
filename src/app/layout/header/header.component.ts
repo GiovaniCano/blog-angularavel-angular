@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Renderer2 } from '@angular/core';
 import { map, Observable, share, tap } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
