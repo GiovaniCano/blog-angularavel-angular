@@ -19,7 +19,7 @@ const routes: Routes = [
   { title: mT('Login'), path: 'login', component: LoginComponent, canActivate: [RedirectIfLoggedGuard] },
   { title: mT('SignUp'), path: 'signup', component: SignupComponent, canActivate: [RedirectIfLoggedGuard] },
   
-  { title: mT('UserName'), path: 'user/profile/:name', component: UserProfileComponent},
+  { title: mT('User'), path: 'user/profile/:name', component: UserProfileComponent},
   { title: mT('Edit Profile'), path: 'user/edit', component: EditUserInfoComponent, canActivate: [MustBeLoggedGuard] },
   { title: mT('Update Password'), path: 'user/password', component: UpdatePasswordComponent, canActivate: [MustBeLoggedGuard] },
   { title: mT('Delete Account'), path: 'user/delete', component: DeleteUserComponent, canActivate: [MustBeLoggedGuard] },

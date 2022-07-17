@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
+import { mT } from 'src/app/helpers';
 import { User } from 'src/app/models/User';
 import { UserService } from '../user.service';
 
@@ -11,12 +13,13 @@ import { UserService } from '../user.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileComponent implements OnInit {
-  // name$ = this._route.params.pipe(map(params => params['name']))
   user$: Observable<User> = this._route.params.pipe(
-    switchMap(params => this._userService.getUser(params['name']))
+    switchMap(params => this._userService.getUser(params['name']).pipe(
+      tap(user => this._title.setTitle(mT(user.name)))
+    ))
   )
 
-  constructor(private _route: ActivatedRoute, private _userService: UserService) { }
+  constructor(private _route: ActivatedRoute, private _userService: UserService, private _title: Title) { }
 
   ngOnInit(): void {
   }
