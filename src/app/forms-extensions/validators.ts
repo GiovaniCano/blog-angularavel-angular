@@ -12,7 +12,7 @@ export const passwordConfirmation: ValidatorFn = (passwordsGroup: AbstractContro
 export function isEmailAvailable(authService: AuthService): AsyncValidatorFn {
     return function (input: AbstractControl): Observable<ValidationErrors | null> {
         return of(input.value).pipe(
-            delay(2000),
+            delay(1500),
             switchMap(email => authService.isEmailAvailable(email).pipe(
                 map(res => res ? null : { isEmailAvailable: true })
             ))
@@ -22,7 +22,7 @@ export function isEmailAvailable(authService: AuthService): AsyncValidatorFn {
 export function isNameAvailable(authService: AuthService): AsyncValidatorFn {
     return function (input: AbstractControl): Observable<ValidationErrors | null> {
         return of(input.value).pipe(
-            delay(2000),
+            delay(1500),
             switchMap(name => authService.isNameAvailable(name).pipe(
                 map(res => res ? null : { isNameAvailable: true })
             ))

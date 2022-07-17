@@ -17,6 +17,7 @@ import { FormsExtensionsModule } from './forms-extensions/forms-extensions.modul
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { UpdatePasswordComponent } from './user/update-password/update-password.component';
 import { DeleteUserComponent } from './user/delete-user/delete-user.component';
+import { ConfirmAvatarDeleteComponent } from './user/edit-user-info/confirm-avatar-delete/confirm-avatar-delete.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DeleteUserComponent } from './user/delete-user/delete-user.component';
     EditUserInfoComponent,
     UserProfileComponent,
     UpdatePasswordComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    ConfirmAvatarDeleteComponent
   ],
   imports: [
     BrowserModule,

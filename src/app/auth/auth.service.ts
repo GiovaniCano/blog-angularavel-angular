@@ -57,11 +57,25 @@ export class AuthService {
     ).subscribe()
   }
 
-  updateUserInfo(body: FormData): Observable<User> {
+  updateUserInfo(body: FormData): Observable<{mustVerifyEmail:boolean, user:User}> {
     const url = this.baseApiUrl + 'user/profile-information'
-    return this._http.post<User>(url, body).pipe( // _method: put
-      tap(user => this.setSession(true, user))
+    return this._http.post<{mustVerifyEmail:boolean, user:User}>(url, body).pipe( // _method: put
+      tap(res => this.setSession(true, res.user))
     )
+  }
+  deleteAvatar(): Observable<any> {
+    const url = this.baseApiUrl + 'user/avatar'
+    return this._http.delete(url).pipe(tap(()=>{
+      const currentSession = this._session.getValue()
+      this._session.next({
+        avatar: null,
+        isLogged: currentSession.isLogged,
+        isVerified: currentSession.isVerified,
+        name: currentSession.name,
+        email: currentSession.email,
+        firstLoad: currentSession.firstLoad
+      })
+    }))
   }
 
   sendPasswordResetEmail(email: string): Observable<any> {

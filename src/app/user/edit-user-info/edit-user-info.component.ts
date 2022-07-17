@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { validateImage } from 'src/app/forms-extensions/image.validator';
 import { alphaNumExtras, isEmailAvailable, isNameAvailable } from 'src/app/forms-extensions/validators';
@@ -16,6 +16,7 @@ import { UserService } from '../user.service';
 export class EditUserInfoComponent implements OnInit, OnDestroy {
   private userSubs!: Subscription
   private updateSubs?: Subscription
+  private emailVerifySubs?: Subscription
 
   form = new FormGroup({
     name: new FormControl('', {
@@ -40,6 +41,9 @@ export class EditUserInfoComponent implements OnInit, OnDestroy {
   get avatar() { return this.form.controls.avatar }
 
   avatarFile?: File
+  showConfirmDeleteAvatar: boolean = false
+  hasAvatar: boolean = false
+  isVerified: boolean = true
 
   constructor(private _authService: AuthService, private _userService: UserService, private _router: Router) { }
 
@@ -55,6 +59,11 @@ export class EditUserInfoComponent implements OnInit, OnDestroy {
     }
   }
 
+  confirmDeleteAvatar(imageDeleted: boolean): void {
+    if(imageDeleted) this.hasAvatar = false
+    this.showConfirmDeleteAvatar = !this.showConfirmDeleteAvatar
+  }
+
   onSubmit(): void {
     this.form.markAsPending()
 
@@ -66,13 +75,19 @@ export class EditUserInfoComponent implements OnInit, OnDestroy {
       body.append('_method', 'PUT')
       if(this.avatarFile) body.append('avatar', this.avatarFile)
 
-    this.updateSubs = this._authService.updateUserInfo(body).subscribe(user=>{
-      if(!user.email_verified_at) {
+    this.updateSubs = this._authService.updateUserInfo(body).subscribe(res=>{
+      if(res.mustVerifyEmail) {
         this._router.navigate(['/email/notification'])
       } else {
-        this._router.navigate(['/user/profile/' + user.name])        
+        this._router.navigate(['/user/profile/' + res.user.name])        
       }
     })
+  }
+
+  verifyEmail(): void {
+    this.emailVerifySubs = this._authService.sendVerificationEmail().pipe(
+      tap({finalize: () => this._router.navigate(['/email/notification'])})
+    ).subscribe()
   }
 
   ngOnInit(): void {
@@ -82,6 +97,8 @@ export class EditUserInfoComponent implements OnInit, OnDestroy {
       form.name.setValue(user.name)
       form.email.setValue(user.email)
       form.description.setValue(user.description)
+      if(user.avatar) this.hasAvatar = true
+      if(!user.email_verified_at) this.isVerified = false
 
       form.name.setAsyncValidators(isNameAvailable(this._authService)) // to avoid initial checking
       form.email.setAsyncValidators(isEmailAvailable(this._authService))
@@ -91,6 +108,7 @@ export class EditUserInfoComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.userSubs.unsubscribe()
     this.updateSubs?.unsubscribe()
+    this.emailVerifySubs?.unsubscribe()
   }
 
 }

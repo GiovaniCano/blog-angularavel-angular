@@ -4,9 +4,9 @@
         <form [formGroup]="form">
     
             <div class="field">
-                <label for="">Name</label>
+                <label for="name">Name</label>
                 <div class="input">
-                    <input formControlName="name" type="text" placeholder="Username">
+                    <input id="name" formControlName="name" type="text" placeholder="Username">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
@@ -18,9 +18,9 @@
             </div><!--field-->
     
             <div class="field">
-                <label for="">E-mail</label>
+                <div id="label-extras"><label for="email">E-mail</label><button (click)="verifyEmail()" id="verify-email" type="button" *ngIf="!isVerified">Verify email</button></div>
                 <div class="input">
-                    <input formControlName="email" type="email" placeholder="E-mail" >
+                    <input id="email" formControlName="email" type="email" placeholder="E-mail" >
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -33,17 +33,19 @@
             </div><!--field-->
     
             <div class="field">
-                <label for="">Description</label>
+                <label for="description">Description</label>
                 <div class="input">
-                    <textarea formControlName="description" placeholder="Description"></textarea>
+                    <textarea id="description" formControlName="description" placeholder="Description"></textarea>
                 </div>
                 <app-forms-error-msg [control]="description"></app-forms-error-msg>
             </div><!--field-->
     
             <div class="field">
-                <label for="">Avatar</label>
-                <div class="input">
-                    <input type="file" (change)="onChangeImage($event)" formControlName="avatar">
+                <div id="label-extras"><label for="avatar">Avatar</label><button *ngIf="hasAvatar" (click)="confirmDeleteAvatar(false)" type="button">Delete current avatar</button></div>
+                <div class="input image">
+                    <span *ngIf="!avatarFile">Click or drag and drop an image here</span>
+                    <span *ngIf="avatarFile">{{avatarFile.name}}</span>
+                    <input id="avatar" type="file" (change)="onChangeImage($event)" formControlName="avatar">
                 </div>
                 <app-forms-error-msg [control]="avatar"></app-forms-error-msg>
             </div><!--field-->
@@ -57,3 +59,5 @@
         </form>
     </main>
 </div>
+
+<app-confirm-avatar-delete *ngIf="showConfirmDeleteAvatar" (closeModal)="confirmDeleteAvatar($event)"></app-confirm-avatar-delete>

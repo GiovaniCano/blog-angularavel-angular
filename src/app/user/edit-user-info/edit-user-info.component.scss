@@ -1,9 +1,39 @@
 @import 'variables';
+@import 'mixins';
 
-#links {
+#label-extras {
     display: flex;
     justify-content: space-between;
-    margin-top: 3.5rem;
-    padding-top: 3.5rem;
-    border-top: 1px solid $blue-light;
+    button {
+        font-size: 18px;
+        color: $red;
+        outline: none;
+    }
+    #verify-email{
+        color: $blue;
+    }
+}
+
+#links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 4.5rem;
+    align-items: center;
+    a {
+        width: 204px;
+        text-align: center;
+        &:last-of-type {
+            border-color: $red; color: $red;
+            margin-top: 3.5rem;
+            @include tablet {
+                margin: 0;
+            }
+        }
+    }
+
+    @include tablet {
+        flex-direction: row;
+    }
 }
