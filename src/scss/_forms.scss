@@ -16,6 +16,10 @@
         }
         background: $blue-trans;
         background: radial-gradient(farthest-corner at 90px 36px, $blue-trans 0%, $white 160%);
+        &.delete-user {
+            background: $red;
+            background: radial-gradient(farthest-corner at 90px 36px, $red 0%, $white 160%);
+        }
     }
 
     form {        

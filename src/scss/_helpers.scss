@@ -56,10 +56,17 @@
     font-size: 2rem;
     text-decoration: none;
     cursor: pointer;
+    &.delete-user {
+        background: $red;
+        background: radial-gradient(farthest-corner at 30px 36px, $red 0%, $white 180%);
+    }
 
     &:hover {
         background: radial-gradient(farthest-corner at 80px 15px, darken($blue-trans, 10) 0%, darken($white, 10) 180%);
         box-shadow: $shadow-sm;
+        &.delete-user {
+            background: radial-gradient(farthest-corner at 80px 15px, darken($red, 10) 0%, darken($white, 10) 180%);
+        }
     }
 
     &:disabled {
@@ -68,6 +75,9 @@
         cursor: unset;
         &:hover {            
             box-shadow: none;
+            &.delete-user {
+                background: radial-gradient(farthest-corner at 30px 36px, $grey 0%, $white 180%);
+            }
         }
     }
 }

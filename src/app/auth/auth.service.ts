@@ -139,6 +139,11 @@ export class AuthService {
     )
   }
 
+  deleteUser(body: {}) {
+    const url = this.baseApiUrl + 'user/delete'
+    return this._http.delete(url, {body: body})
+  }
+
   expireSession(): void {
     this.setSession(false)
     this._router.navigate(['/login'], { queryParams: { expired: 1 } })
