@@ -77,6 +77,10 @@ export class AuthService {
       })
     }))
   }
+  updatePassword(body: {}): Observable<any> {
+    const url = this.baseApiUrl + 'user/password'
+    return this._http.put(url, body)
+  }
 
   sendPasswordResetEmail(email: string): Observable<any> {
     const url = this.baseApiUrl + 'forgot-password'

@@ -29,7 +29,7 @@
                 <span class="pending-msg" *ngIf="(name.statusChanges | async) === 'PENDING'">Checking availability...</span>
             </div><!--field-->
     
-            <div [formGroup]="passwordsGroup">
+            <fieldset [formGroup]="passwordsGroup">
                 <div class="field">
                     <div class="input">
                         <input formControlName="password" type="password" placeholder="Password">
@@ -53,7 +53,7 @@
                     </div>
                     <app-forms-error-msg [control]="passwordsGroup"></app-forms-error-msg>
                 </div><!--field-->
-            </div>
+            </fieldset>
     
             <input type="submit" class="btn-1 centered" value="Sign Up" (click)="onSubmit()" [disabled]="(form.statusChanges | async) !== 'VALID'">
         </form>
