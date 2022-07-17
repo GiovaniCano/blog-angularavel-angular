@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { mT } from './helpers';
 
 import { LoginComponent } from './auth/login/login.component';
-import { IndexComponent } from './posts/index.component';
+import { IndexComponent } from './posts/index/index.component';
 import { RedirectIfLoggedGuard } from './auth/guards/redirect-if-logged.guard';
 import { SignupComponent } from './auth/signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -13,6 +13,8 @@ import { EditUserInfoComponent } from './user/edit-user-info/edit-user-info.comp
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { UpdatePasswordComponent } from './user/update-password/update-password.component';
 import { DeleteUserComponent } from './user/delete-user/delete-user.component';
+import { CreatePostComponent } from './posts/create-post/create-post.component';
+import { MustBeVerifiedGuard } from './auth/guards/must-be-verified.guard';
 
 const routes: Routes = [
   { title: mT('Home'), path: '', component: IndexComponent },
@@ -23,6 +25,8 @@ const routes: Routes = [
   { title: mT('Edit Profile'), path: 'user/edit', component: EditUserInfoComponent, canActivate: [MustBeLoggedGuard] },
   { title: mT('Update Password'), path: 'user/password', component: UpdatePasswordComponent, canActivate: [MustBeLoggedGuard] },
   { title: mT('Delete Account'), path: 'user/delete', component: DeleteUserComponent, canActivate: [MustBeLoggedGuard] },
+
+  { title: mT('New Post'), path: 'post/new', component: CreatePostComponent, canActivate: [MustBeLoggedGuard, MustBeVerifiedGuard] },
 
   {
     path: 'email',

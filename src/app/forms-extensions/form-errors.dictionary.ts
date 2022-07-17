@@ -10,4 +10,5 @@ export const errorsDictionary: {[key:string]:string} = {
     password: 'Password must contain at least 1 lowercase letter, uppercase letter, number and special character',
     imageType: 'Allowed formats: jpg, jpeg, webp, png',
     imageSize: 'The image size must be less than 2 Mb',
+    min: 'This field is required',
 }

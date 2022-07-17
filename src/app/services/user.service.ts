@@ -9,17 +9,17 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-  private API_BASE_URL = environment.API_BASE_URL
+  private baseApiUrl: string = environment.API_BASE_URL
 
   constructor(private _http: HttpClient, private _router: Router) { }
 
   getCurrentUserInfo(): Observable<User> {
-    const url = this.API_BASE_URL + 'user/current'
+    const url = this.baseApiUrl + 'user/current'
     return this._http.get<User>(url)
   }
 
   getUser(name: string): Observable<User> {
-    const url = this.API_BASE_URL + 'user/' + name
+    const url = this.baseApiUrl + 'user/' + name
     return this._http.get<User>(url).pipe(
       tap({error: err => {
         if(err.status === 404) this._router.navigate(['/404'])

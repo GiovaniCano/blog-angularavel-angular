@@ -7,9 +7,8 @@
 
 <div class="menu-area" [class.hidden]="!showmenu">
     <ul class="menu no-list-style">
-        <li><a class="no-link-style" >Ordernadores y videojuegos</a></li>
-        <li><a class="no-link-style" >Ordernadores y videojuegos</a></li>
-        <li><a class="no-link-style" href="http://google.com">Ordernadores y videojuegos</a></li>
-        <li><a class="no-link-style" >Ordernadores y videojuegos</a></li>
+        <li *ngFor="let category of (categories$ | async)">
+            <a class="no-link-style" [routerLink]="'post/category/'+category.id">{{category.name}}</a>
+        </li>
     </ul>
 </div>

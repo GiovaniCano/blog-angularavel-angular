@@ -19,3 +19,8 @@ export interface RegisterCredentials {
     password: string
     password_confirmation: string
 }
+
+export interface Category {
+    id: number
+    name: string
+}

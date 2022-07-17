@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-categories-menu',
@@ -7,11 +8,16 @@ import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesMenuComponent {
+  categories$ = this._postService.getCategories()
+
   showmenu: boolean = false
-  @HostListener('click') toggleMenu(){
+
+  @HostListener('click') toggleMenu() {
     this.showmenu = !this.showmenu
   }
   @HostListener('mouseleave') closeMenu() {
     this.showmenu = false
   }
+
+  constructor(private _postService: PostService) { }
 }

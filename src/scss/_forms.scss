@@ -84,7 +84,7 @@
             font-size: 16px;
             color: $grey;
         }
-        input:not([type="submit"]), textarea {
+        input:not([type="submit"]), textarea, select {
             border: none;
             outline: none;
             width: 100%;
@@ -101,6 +101,13 @@
         }
         label {
             color: $blue-light;
+        }
+        select {
+            color: $black1;         
+            option {
+                color: $blue;   
+                background-color: $blue-light-inputs;
+            }
         }
             
         .icon {
@@ -120,7 +127,7 @@ form {
         font-size: 14px;
     }
 
-    input:not([type="submit"]), textarea, label {
+    input:not([type="submit"]), textarea, label, select {
         font-size: 1.8rem;
         &::placeholder {
             font-size: 1.8rem;

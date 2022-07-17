@@ -4,7 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { IndexComponent } from './posts/index.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { AuthModule } from './auth/auth.module';
@@ -18,11 +17,11 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
 import { UpdatePasswordComponent } from './user/update-password/update-password.component';
 import { DeleteUserComponent } from './user/delete-user/delete-user.component';
 import { ConfirmAvatarDeleteComponent } from './user/edit-user-info/confirm-avatar-delete/confirm-avatar-delete.component';
+import { PostsModule } from './posts/posts.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent,
     NotFoundComponent,
     EditUserInfoComponent,
     UserProfileComponent,
@@ -38,6 +37,7 @@ import { ConfirmAvatarDeleteComponent } from './user/edit-user-info/confirm-avat
     
     AuthModule,
     LayoutModule,
+    PostsModule,
     
     AppRoutingModule
   ],
