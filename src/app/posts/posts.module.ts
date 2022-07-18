@@ -4,18 +4,22 @@ import { IndexComponent } from './index/index.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsExtensionsModule } from '../forms-extensions/forms-extensions.module';
+import { ShowPostComponent } from './show-post/show-post.component';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [
     IndexComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    ShowPostComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsExtensionsModule
+    FormsExtensionsModule,
+    RouterModule
   ]
 })
 export class PostsModule { }

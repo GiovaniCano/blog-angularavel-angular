@@ -18,6 +18,7 @@ export class AuthService {
     name: '',
     avatar: null,
     email: '',
+    id: 0,
     firstLoad: true
   })
   public session$ = this._session.asObservable()
@@ -29,6 +30,7 @@ export class AuthService {
       name: user?.name ?? '',
       avatar: user?.avatar ?? null,
       email: user?.email ?? '',
+      id: user?.id ?? 0,
       firstLoad: false
     })
   }
@@ -73,6 +75,7 @@ export class AuthService {
         isVerified: currentSession.isVerified,
         name: currentSession.name,
         email: currentSession.email,
+        id: currentSession.id,
         firstLoad: currentSession.firstLoad
       })
     }))

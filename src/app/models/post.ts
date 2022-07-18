@@ -1,3 +1,6 @@
+import { Category } from "../interfaces"
+import { User } from "./user"
+
 export class Post {
     id: number
     user_id: number
@@ -7,6 +10,8 @@ export class Post {
     image: File | null
     created_at: string
     updated_at: string
+    user?: User
+    category?: Category
 
     constructor(args : {
         id?: number

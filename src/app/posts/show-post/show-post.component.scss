@@ -1,0 +1,74 @@
+@import 'variables';
+
+:host {
+    flex: 1;
+}
+
+#content {    
+    background-color: $white;
+    box-shadow: $shadow;
+    border-radius: 0 0 2rem 2rem;
+    padding: 4rem;
+
+    h1 {
+        margin: 0 0 1.2rem 0;
+        font-weight: 400;
+        color: $blue;
+    }
+
+    #actions {
+        border-top: 3px solid $blue-light;
+        border-bottom: 3px solid $blue-light;
+        padding: .8rem 0 .8rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #info {
+        display: flex;
+        align-items: center;
+        p{
+            font-size: 17px;
+            margin: 0;
+        }
+        #author {
+            margin-left: 1rem;
+            margin-right: 2.5rem;
+            padding-right: 2.5rem;
+            border-right: 3px solid $blue-light;
+            color: $blue;
+        }
+        a {
+            color: $orange;
+        }
+    }
+
+    #buttons {
+        display: flex;
+        align-items: center;
+    }
+
+    #edit-post {
+        border-color: $orange;
+        color: $orange;
+    }
+    #delete-post {
+        margin-left: 2rem;
+        border-color: $red;
+        color: $red;
+    }
+
+    figure {
+        margin: 4rem auto;
+    }
+    img {
+        height: 40rem;
+        width: auto;
+        margin: 0 auto;
+    }
+}
+
+#post-content {
+
+}

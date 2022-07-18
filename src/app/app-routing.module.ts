@@ -15,6 +15,7 @@ import { UpdatePasswordComponent } from './user/update-password/update-password.
 import { DeleteUserComponent } from './user/delete-user/delete-user.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { MustBeVerifiedGuard } from './auth/guards/must-be-verified.guard';
+import { ShowPostComponent } from './posts/show-post/show-post.component';
 
 const routes: Routes = [
   { title: mT('Home'), path: '', component: IndexComponent },
@@ -26,7 +27,11 @@ const routes: Routes = [
   { title: mT('Update Password'), path: 'user/password', component: UpdatePasswordComponent, canActivate: [MustBeLoggedGuard] },
   { title: mT('Delete Account'), path: 'user/delete', component: DeleteUserComponent, canActivate: [MustBeLoggedGuard] },
 
+  { title: mT('Post'), path: 'post/read/:id', component: ShowPostComponent}, // title
+  // { title: mT('Category'), path: 'post/category/:id', component: }, // title
+
   { title: mT('New Post'), path: 'post/new', component: CreatePostComponent, canActivate: [MustBeLoggedGuard, MustBeVerifiedGuard] },
+  // { title: mT('Edit Post'), path: 'post/edit/:id', component: , canActivate: [MustBeLoggedGuard, MustBeVerifiedGuard] }, // title
 
   {
     path: 'email',

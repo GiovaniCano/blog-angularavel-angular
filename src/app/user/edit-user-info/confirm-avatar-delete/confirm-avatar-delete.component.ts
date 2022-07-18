@@ -6,7 +6,8 @@ import { AuthService } from 'src/app/services/auth.service';
   selector: 'app-confirm-avatar-delete',
   templateUrl: './confirm-avatar-delete.component.html',
   styleUrls: ['./confirm-avatar-delete.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {class: 'modal'}
 })
 export class ConfirmAvatarDeleteComponent implements OnDestroy {
   private deleteAvatarSubs?: Subscription

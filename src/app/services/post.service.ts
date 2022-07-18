@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Category } from '../interfaces';
 import { Post } from '../models/post';
@@ -11,7 +12,16 @@ import { Post } from '../models/post';
 export class PostService {
   private baseApiUrl: string = environment.API_BASE_URL
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _router: Router) { }
+
+  getPost(id: number): Observable<Post> {
+    const url = this.baseApiUrl + 'post/' + id
+    return this._http.get<Post>(url).pipe(
+      tap({error: error => {
+        if(error.status === 404) this._router.navigate(['/404'])
+      }})
+    )
+  }
 
   createPost(body: FormData): Observable<Post> {
     const url = this.baseApiUrl + 'post'

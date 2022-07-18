@@ -4,6 +4,7 @@ export interface Session {
     name: string
     avatar: string | null
     email: string
+    id: number
     firstLoad: boolean
 }
 

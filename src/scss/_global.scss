@@ -25,3 +25,21 @@ img {
     height: auto;
     display: block;
 }
+
+/* z-index */
+app-header {
+    z-index: 1;
+}
+.menu-area {
+    z-index: 2;
+}
+.modal {
+    z-index: 3;
+
+    &.alert {
+        z-index: 4;
+    }
+}
+app-mobilemenu {
+    z-index: 9;
+}
