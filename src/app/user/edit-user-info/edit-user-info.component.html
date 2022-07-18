@@ -18,7 +18,7 @@
             </div><!--field-->
     
             <div class="field">
-                <div id="label-extras"><label for="email">E-mail</label><button (click)="verifyEmail()" id="verify-email" type="button" *ngIf="!isVerified">Verify email</button></div>
+                <div id="label-extras"><label for="email">E-mail</label><button class="no-button-style" (click)="verifyEmail()" id="verify-email" type="button" *ngIf="!isVerified">Verify email</button></div>
                 <div class="input">
                     <input id="email" formControlName="email" type="email" placeholder="E-mail" >
                     <div class="icon">
@@ -41,7 +41,7 @@
             </div><!--field-->
     
             <div class="field">
-                <div id="label-extras"><label for="avatar">Avatar</label><button *ngIf="hasAvatar" (click)="confirmDeleteAvatar(false)" type="button">Delete current avatar</button></div>
+                <div id="label-extras"><label for="avatar">Avatar</label><button class="no-button-style" *ngIf="hasAvatar" (click)="confirmDeleteAvatar(false)" type="button">Delete current avatar</button></div>
                 <div class="input image">
                     <span *ngIf="!avatarFile">Click or drag and drop an image here</span>
                     <span *ngIf="avatarFile">{{avatarFile.name}}</span>

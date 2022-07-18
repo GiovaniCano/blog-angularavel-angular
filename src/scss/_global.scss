@@ -14,16 +14,17 @@ body {
 a, button{
     cursor: pointer;
 }
-button {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    color: inherit;
-}
+
 img {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.angular-editor-button {
+    i, i::before {
+        transform: scale(.65);
+    }
 }
 
 /* z-index */

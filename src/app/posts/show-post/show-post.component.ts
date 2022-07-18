@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, switchMap, tap } from 'rxjs';
@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./show-post.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShowPostComponent implements OnInit {
+export class ShowPostComponent {
   baseImageUrl: string = environment.API_BASE_URL + 'post/image/'
 
   post$: Observable<Post> = this._route.params.pipe(
@@ -33,8 +33,4 @@ export class ShowPostComponent implements OnInit {
     private _title: Title,
     private _authService: AuthService
   ) { }
-
-  ngOnInit(): void {
-  }
-
 }

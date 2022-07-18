@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Observable, Subscription } from 'rxjs';
 import { validateImage } from 'src/app/forms-extensions/image.validator';
 import { Category } from 'src/app/interfaces';
@@ -31,6 +32,27 @@ export class CreatePostComponent implements OnDestroy {
   get content() { return this.form.get('content') as FormControl }
   get image() { return this.form.get('image') as FormControl }
 
+  // https://github.com/kolkov/angular-editor
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    minHeight: '20rem',
+    placeholder: 'Start writing your post...',
+    toolbarHiddenButtons: [
+      [
+        'subscript',
+        'fontName'
+      ],
+      [
+        'backgroundColor',
+        'customClasses',
+        'insertImage',
+        'insertVideo',
+        'insertHorizontalRule',
+        'toggleEditorMode'
+      ]
+    ]
+  }
+
   constructor(private _postService: PostService, private _router: Router) { }
 
   onSubmit() {
@@ -42,13 +64,13 @@ export class CreatePostComponent implements OnDestroy {
       body.append('content', form.content.value ?? '')
       body.append('image', this.imageFile)
 
-    this.createSubs = this._postService.createPost(body).subscribe(post=>this._router.navigate([`/post/read/${post.id}`]))
+    this.createSubs = this._postService.createPost(body).subscribe(post => this._router.navigate([`/post/read/${post.id}`]))
   }
 
   setImage(event: any) {
     const image = event.target.files[0]
     const errors = validateImage(image)
-    if(errors) {
+    if (errors) {
       this.form.controls.image.setErrors(errors)
     } else {
       this.imageFile = image

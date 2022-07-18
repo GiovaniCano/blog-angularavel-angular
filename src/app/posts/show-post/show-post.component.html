@@ -1,24 +1,22 @@
 <main id="content" class="container-md" *ngIf="post$ | async as post">
     <h1>{{post.title}}</h1>
+
     <div id="actions">
         <div id="info">
             <p>By</p>
             <a [routerLink]="'/user/profile/' + post.user?.name" id="author">{{post.user?.name}}</a>
             <a [routerLink]="'/post/category/' + post.category?.id">{{post.category?.name}}</a>
         </div>
+        
         <div id="buttons" *ngIf="(userIdSession$ | async) === post.user_id">
             <a [routerLink]="'/post/edit/' + post.id" class="btn-2" id="edit-post">Edit Post</a>
             <button type="button" class="btn-2 delete" id="delete-post">Delete Post</button> <!--delete post-->
         </div>
     </div>
+
     <figure>
         <img [src]="baseImageUrl+post.image" alt="Post Image" width="640" height="360">
     </figure>
-    <div id="post-content">
-        {{post.content}}
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo esse ab perferendis animi voluptatem libero dolore reiciendis, quos numquam laudantium laborum, eveniet ipsum deleniti quas est amet eum. Eligendi, nostrum.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo esse ab perferendis animi voluptatem libero dolore reiciendis, quos numquam laudantium laborum, eveniet ipsum deleniti quas est amet eum. Eligendi, nostrum.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo esse ab perferendis animi voluptatem libero dolore reiciendis, quos numquam laudantium laborum, eveniet ipsum deleniti quas est amet eum. Eligendi, nostrum.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo esse ab perferendis animi voluptatem libero dolore reiciendis, quos numquam laudantium laborum, eveniet ipsum deleniti quas est amet eum. Eligendi, nostrum.</p>
-    </div>
+
+    <div id="post-content" [innerHTML]="post.content"></div>
 </main>

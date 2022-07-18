@@ -24,9 +24,12 @@
             
             <div class="field">
                 <label for="content">Content</label>
+                
                 <div class="input">
-                    <textarea id="content" formControlName="content"></textarea>
+                    <!-- <textarea id="content" formControlName="content"></textarea> -->
+                    <angular-editor formControlName="content" [config]="editorConfig"></angular-editor>
                 </div>
+
                 <app-forms-error-msg [control]="content"></app-forms-error-msg>
             </div>
             
