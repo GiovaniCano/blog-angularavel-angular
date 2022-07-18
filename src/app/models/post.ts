@@ -7,7 +7,7 @@ export class Post {
     category_id: number
     title: string
     content: string
-    image: File | null
+    image: string
     created_at: string
     updated_at: string
     user?: User
@@ -19,7 +19,7 @@ export class Post {
         category_id?: number
         title?: string
         content?: string
-        image?: File
+        image?: string
         created_at?: string
         updated_at?: string
     } = {}) {
@@ -28,7 +28,7 @@ export class Post {
         this.category_id = args.category_id ?? 0,
         this.title = args.title ?? '',
         this.content = args.content ?? '',
-        this.image = args.image ?? null,
+        this.image = args.image ?? '',
         this.created_at = args.created_at ?? '',
         this.updated_at = args.updated_at ?? ''
     }

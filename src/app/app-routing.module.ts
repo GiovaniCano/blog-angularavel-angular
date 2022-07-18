@@ -16,6 +16,7 @@ import { DeleteUserComponent } from './user/delete-user/delete-user.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { MustBeVerifiedGuard } from './auth/guards/must-be-verified.guard';
 import { ShowPostComponent } from './posts/show-post/show-post.component';
+import { UpdatePostComponent } from './posts/update-post/update-post.component';
 
 const routes: Routes = [
   { title: mT('Home'), path: '', component: IndexComponent },
@@ -31,7 +32,7 @@ const routes: Routes = [
   // { title: mT('Category'), path: 'post/category/:id', component: }, // title
 
   { title: mT('New Post'), path: 'post/new', component: CreatePostComponent, canActivate: [MustBeLoggedGuard, MustBeVerifiedGuard] },
-  // { title: mT('Edit Post'), path: 'post/edit/:id', component: , canActivate: [MustBeLoggedGuard, MustBeVerifiedGuard] }, // title
+  { title: mT('Edit Post'), path: 'post/edit/:id', component: UpdatePostComponent, canActivate: [MustBeLoggedGuard, MustBeVerifiedGuard] }, // title
 
   {
     path: 'email',

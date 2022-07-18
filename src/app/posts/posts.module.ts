@@ -7,6 +7,7 @@ import { FormsExtensionsModule } from '../forms-extensions/forms-extensions.modu
 import { ShowPostComponent } from './show-post/show-post.component';
 import { RouterModule } from '@angular/router';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { UpdatePostComponent } from './update-post/update-post.component';
 
 
 
@@ -14,7 +15,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
   declarations: [
     IndexComponent,
     CreatePostComponent,
-    ShowPostComponent
+    ShowPostComponent,
+    UpdatePostComponent
   ],
   imports: [
     CommonModule,

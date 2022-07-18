@@ -28,6 +28,11 @@ export class PostService {
     return this._http.post<Post>(url, body)
   }
 
+  updatePost(body: FormData, id: number): Observable<Post> {
+    const url = this.baseApiUrl + 'post/' + id
+    return this._http.post<Post>(url, body) // _method: PUT
+  }
+
   getCategories(): Observable<Category[]> {
     const url = this.baseApiUrl + 'post/categories'
     return this._http.get<Category[]>(url)

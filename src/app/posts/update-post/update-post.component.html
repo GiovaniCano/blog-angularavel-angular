@@ -1,0 +1,59 @@
+<div class="container-sm" id="content">
+
+    <a class="btn-2" id="back" [routerLink]="'/post/read/'+postId">Back</a>
+
+    <main class="form">
+        <div class="title"><h1>Edit Post</h1></div>
+        <form [formGroup]="form">
+            
+            <div class="field">
+                <label for="title">Title</label>
+                <div class="input">
+                    <input type="text" id="title" formControlName="title">
+                </div>
+                <app-forms-error-msg [control]="title"></app-forms-error-msg>
+            </div>
+            
+            <div class="field">
+                <label for="category">Category</label>
+                <div class="input">
+                    <select id="category" formControlName="category_id">
+                        <option value="0" disabled selected></option>
+                        <option *ngFor="let category of (categories$ | async)" [value]="category.id">{{category.name}}</option>
+                    </select>
+                </div>
+                <app-forms-error-msg [control]="category_id"></app-forms-error-msg>
+            </div>
+            
+            <div class="field">
+                <label for="content">Content</label>
+                
+                <div class="input">
+                    <!-- <textarea id="content" formControlName="content"></textarea> -->
+                    <angular-editor formControlName="content" [config]="editorConfig"></angular-editor>
+                </div>
+
+                <app-forms-error-msg [control]="content"></app-forms-error-msg>
+            </div>
+            
+            <div id="image-section">
+                <div class="field">
+                    <label for="image">Image</label>
+                    <div class="input image">
+                        <span *ngIf="!imageFile">Click or drag and drop an image here</span>
+                        <span *ngIf="imageFile">{{imageFile.name}}</span>
+                        <input type="file" id="image" formControlName="image" (change)="setImage($event)">
+                    </div>
+                    <app-forms-error-msg [control]="image"></app-forms-error-msg>
+                </div>
+
+                <figure>
+                    <img *ngIf="currentImage" [src]="baseImageUrl+currentImage" alt="Post Image" width="224" height="126">
+                    <figcaption>Current Image</figcaption>
+                </figure>
+            </div>
+    
+            <input type="submit" class="btn-1 centered" value="Update Post" (click)="onSubmit()" [disabled]="(form.statusChanges | async) !== 'VALID'">
+        </form>
+    </main>
+</div>

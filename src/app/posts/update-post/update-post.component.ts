@@ -1,20 +1,24 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, switchMap, take, tap } from 'rxjs';
 import { validateImage } from 'src/app/forms-extensions/image.validator';
+import { mT } from 'src/app/helpers';
 import { Category } from 'src/app/interfaces';
 import { PostService } from 'src/app/services/post.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-create-post',
-  templateUrl: './create-post.component.html',
-  styleUrls: ['./create-post.component.scss'],
+  selector: 'app-update-post',
+  templateUrl: './update-post.component.html',
+  styleUrls: ['./update-post.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreatePostComponent implements OnDestroy {
-  private createSubs?: Subscription
+export class UpdatePostComponent implements OnInit, OnDestroy {
+  private updateSubs?: Subscription
+  private paramsAndPostSubs!: Subscription
 
   categories$: Observable<Category[]> = this._postService.getCategories()
 
@@ -22,10 +26,13 @@ export class CreatePostComponent implements OnDestroy {
     title: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
     category_id: new FormControl(0, [Validators.required, Validators.min(1)]),
     content: new FormControl('', [Validators.required, Validators.minLength(100), Validators.maxLength(65535)]),
-    image: new FormControl('', [Validators.required]),
+    image: new FormControl('', []),
   })
 
-  imageFile!: File
+  imageFile?: File
+
+  baseImageUrl: string = environment.API_BASE_URL + 'post/image/'
+  currentImage: string = ''
 
   get title() { return this.form.get('title') as FormControl }
   get category_id() { return this.form.get('category_id') as FormControl }
@@ -54,7 +61,14 @@ export class CreatePostComponent implements OnDestroy {
     ]
   }
 
-  constructor(private _postService: PostService, private _router: Router) { }
+  postId!: number
+
+  constructor(
+    private _postService: PostService, 
+    private _router: Router, 
+    private _route: ActivatedRoute, 
+    private _title: Title
+  ) { }
 
   onSubmit() {
     const form = this.form.controls
@@ -63,9 +77,10 @@ export class CreatePostComponent implements OnDestroy {
       body.append('title', form.title.value ?? '')
       body.append('category_id', form.category_id.value?.toString() ?? '')
       body.append('content', form.content.value ?? '')
-      body.append('image', this.imageFile)
+      body.append('_method', 'put')
+      if(this.imageFile) body.append('image', this.imageFile)
 
-    this.createSubs = this._postService.createPost(body).subscribe(post => this._router.navigate([`/post/read/${post.id}`]))
+    this.updateSubs = this._postService.updatePost(body, this.postId).subscribe(post => this._router.navigate([`/post/read/${post.id}`]))
   }
 
   setImage(event: any) {
@@ -78,8 +93,23 @@ export class CreatePostComponent implements OnDestroy {
     }
   }
 
+  ngOnInit(): void {
+    this.paramsAndPostSubs = this._route.params.pipe(
+      tap(params => this.postId = params['id']),
+      switchMap(params => this._postService.getPost(params['id']).pipe(
+        tap(post => this._title.setTitle(mT(`Edit: ${post.title}`))),
+      ))
+    ).subscribe(post => {
+      this.title.setValue(post.title)
+      this.category_id.setValue(post.category_id)
+      this.content.setValue(post.content)
+      this.currentImage = post.image
+    })
+  }
+
   ngOnDestroy(): void {
-    this.createSubs?.unsubscribe()
+    this.paramsAndPostSubs.unsubscribe()
+    this.updateSubs?.unsubscribe()
   }
 
 }
