@@ -10,7 +10,7 @@
         
         <div id="buttons" *ngIf="(userIdSession$ | async) === post.user_id">
             <a [routerLink]="'/post/edit/' + post.id" class="btn-2" id="edit-post">Edit Post</a>
-            <button type="button" class="btn-2 delete" id="delete-post">Delete Post</button> <!--delete post-->
+            <button type="button" class="btn-2 delete" id="delete-post" (click)="deletePost(post.id)">Delete Post</button> <!--delete post-->
         </div>
     </div>
 
@@ -20,3 +20,5 @@
 
     <div id="post-content" [innerHTML]="post.content"></div>
 </main>
+
+<app-confirm-modal *ngIf="showDeleteConfirmModal" title="Delete post?"></app-confirm-modal>

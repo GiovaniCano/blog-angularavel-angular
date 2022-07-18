@@ -18,6 +18,7 @@ import { UpdatePasswordComponent } from './user/update-password/update-password.
 import { DeleteUserComponent } from './user/delete-user/delete-user.component';
 import { ConfirmAvatarDeleteComponent } from './user/edit-user-info/confirm-avatar-delete/confirm-avatar-delete.component';
 import { PostsModule } from './posts/posts.module';
+import { ModalsModule } from './modals/modals.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PostsModule } from './posts/posts.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsExtensionsModule,
+    ModalsModule,
     
     AuthModule,
     LayoutModule,

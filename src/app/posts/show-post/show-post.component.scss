@@ -15,6 +15,7 @@
         margin: 0 0 1.2rem 0;
         font-weight: 400;
         color: $blue;
+        overflow-wrap: anywhere;
     }
 
     #actions {
@@ -44,6 +45,7 @@
             padding-right: 2.5rem;
             border-right: 3px solid $blue-light;
             color: $blue;
+            overflow-wrap: anywhere;
         }
         a {
             color: $orange;
@@ -86,5 +88,5 @@
 }
 
 #post-content {
-
+    overflow-wrap: anywhere;
 }

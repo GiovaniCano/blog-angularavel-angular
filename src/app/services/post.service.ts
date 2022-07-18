@@ -33,6 +33,11 @@ export class PostService {
     return this._http.post<Post>(url, body) // _method: PUT
   }
 
+  deletePost(id: number): Observable<any> {    
+    const url = this.baseApiUrl + 'post/' + id
+    return this._http.delete(url)
+  }
+
   getCategories(): Observable<Category[]> {
     const url = this.baseApiUrl + 'post/categories'
     return this._http.get<Category[]>(url)

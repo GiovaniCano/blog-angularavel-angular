@@ -8,6 +8,7 @@ import { ShowPostComponent } from './show-post/show-post.component';
 import { RouterModule } from '@angular/router';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { UpdatePostComponent } from './update-post/update-post.component';
+import { ModalsModule } from '../modals/modals.module';
 
 
 
@@ -24,7 +25,8 @@ import { UpdatePostComponent } from './update-post/update-post.component';
     FormsExtensionsModule,
     RouterModule,
     AngularEditorModule,
-    FormsModule
+    FormsModule,
+    ModalsModule
   ]
 })
 export class PostsModule { }

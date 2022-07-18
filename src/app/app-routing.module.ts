@@ -28,11 +28,11 @@ const routes: Routes = [
   { title: mT('Update Password'), path: 'user/password', component: UpdatePasswordComponent, canActivate: [MustBeLoggedGuard] },
   { title: mT('Delete Account'), path: 'user/delete', component: DeleteUserComponent, canActivate: [MustBeLoggedGuard] },
 
-  { title: mT('Post'), path: 'post/read/:id', component: ShowPostComponent}, // title
+  { title: mT('Post'), path: 'post/read/:id', component: ShowPostComponent},
   // { title: mT('Category'), path: 'post/category/:id', component: }, // title
 
   { title: mT('New Post'), path: 'post/new', component: CreatePostComponent, canActivate: [MustBeLoggedGuard, MustBeVerifiedGuard] },
-  { title: mT('Edit Post'), path: 'post/edit/:id', component: UpdatePostComponent, canActivate: [MustBeLoggedGuard, MustBeVerifiedGuard] }, // title
+  { title: mT('Edit Post'), path: 'post/edit/:id', component: UpdatePostComponent, canActivate: [MustBeLoggedGuard, MustBeVerifiedGuard] },
 
   {
     path: 'email',
