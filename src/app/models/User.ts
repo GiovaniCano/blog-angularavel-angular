@@ -1,3 +1,5 @@
+import { Post } from "./post"
+
 export class User {
     id: number
     name: string
@@ -7,6 +9,7 @@ export class User {
     email_verified_at: string
     created_at: string
     updated_at: string
+    posts?: Post[]
 
     constructor(args: {
         id?: number

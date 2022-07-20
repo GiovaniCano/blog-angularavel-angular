@@ -1,3 +1,20 @@
-<p>user-profile works!</p>
-<!-- <p>{{name$ | async}}</p> -->
-<pre>{{user$ | async | json}}</pre>
+<!-- <pre>{{userAndPosts$ | async | json}}</pre> -->
+<main id="content" class="container-md" *ngIf="(userAndPosts$ | async) as user">
+    <div id="user-info">
+        <figure><img [src]="user.avatar ? baseAvatarUrl+user.avatar : '/assets/defaultAvatar.webp'" alt="User Image" width="200" height="200"></figure>
+        <div>
+            <h1>{{user.name}}</h1>
+            <p>{{user.description}}</p>
+        </div>
+    </div>
+
+    <div id="posts-grid">
+        <div class="post" *ngFor="let post of user.posts">
+            <div id="h">
+                <h3>{{post.title}}</h3>
+            </div>
+            <figure><img [src]="basePostImageUrl+post.image" alt="Post Image" width="300" height="100"></figure>
+            <a [routerLink]="'/post/read/'+post.id" class="btn-2">Read more</a>
+        </div>
+    </div>
+</main>

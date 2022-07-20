@@ -1,0 +1,107 @@
+@import 'variables';
+@import 'mixins';
+
+:host {
+    flex: 1;
+}
+
+main {
+    background-color: white;
+    box-shadow: $shadow;
+    border-radius: 0 0 2rem 2rem;
+    padding: 4rem 3rem;
+}
+
+#user-info {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-bottom: 5rem;
+    background-color: $blue-light-inputs;
+    padding: 2rem;
+    border: 1px solid $blue-light;
+    border-radius: .5rem;
+
+    @include tablet {
+        flex-direction: row;
+        align-items: unset;
+    }
+
+    figure {
+        margin: 3.5rem 0 0 0;
+        padding: 0;
+        border: 0;
+        @include tablet {
+            margin: 0 2rem 0 0;
+            padding: 0 2rem 0 0;
+            border-right: 2px solid $blue-light;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: .5rem;
+        }
+    }
+
+    div {
+        width: 100%;
+        h1 {
+            margin: 0;
+            margin-bottom: 2.5rem;
+            color: $blue;
+            font-weight: 400;
+            overflow-wrap: anywhere;
+            text-align: center;
+        }
+        p {
+            margin: 0;
+            overflow-wrap: anywhere;
+        }
+    }
+}
+
+#posts-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2.5rem;
+    @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include laptop {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .post {
+        background-color: $blue-light-trans;
+        background: radial-gradient(farthest-corner at 4rem 20rem, $blue-light-trans 0%, $white 120%);
+        border-radius: 1rem;
+    
+        overflow: hidden;
+        #h {
+            margin: 2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 40px; //dots
+            color: $blue; //dots
+            h3 {
+                margin: 0;
+                font-weight: 400;
+                color: $blue;
+                display: inline;
+            }
+        }
+    
+        
+        figure {
+            margin: 0 auto;
+            padding: 2rem;
+            border-top: 2px solid $blue-light;
+            border-bottom: 2px solid $blue-light;
+        }
+        a {
+            margin: 2rem 2rem 2rem auto;
+        }
+    }
+}

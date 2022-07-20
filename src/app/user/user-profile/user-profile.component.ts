@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap, tap } from 'rxjs';
 import { mT } from 'src/app/helpers';
 import { User } from 'src/app/models/user';
+import { environment } from 'src/environments/environment';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -13,7 +14,10 @@ import { UserService } from '../../services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileComponent implements OnInit {
-  user$: Observable<User> = this._route.params.pipe(
+  baseAvatarUrl: string = environment.API_BASE_URL+'user/avatar/'
+  basePostImageUrl: string = environment.API_BASE_URL+'post/image/'
+
+  userAndPosts$: Observable<User> = this._route.params.pipe(
     switchMap(params => this._userService.getUser(params['name']).pipe(
       tap(user => this._title.setTitle(mT(user.name)))
     ))
