@@ -35,6 +35,10 @@ export class AuthService {
     })
   }
 
+  public getSession(): Session {
+    return this._session.getValue()
+  }
+
   public isFirstLoad(): boolean {
     return this._session.getValue().firstLoad
   }

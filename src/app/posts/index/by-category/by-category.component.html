@@ -1,4 +1,6 @@
 <main class="container-md">
+    <h1 *ngIf="category">{{category.name}}</h1>
+
     <div id="posts-grid">
         <div class="post" *ngFor="let post of (posts$ | async)">
             <div id="h">
@@ -10,20 +12,20 @@
     </div>
     
     <div id="pagination">
-        <a routerLink="/page/1" type="button" class="btn-2" [class.disabled]="currentPage <= 1">First</a>
+        <a [routerLink]="firstLink" type="button" class="btn-2" [class.disabled]="currentPage <= 1">First</a>
 
-        <a [routerLink]="'/page/'+(currentPage-1)" 
+        <a [routerLink]="prevPageLink" 
         type="button" class="btn-2" [class.disabled]="currentPage <= 1">
             {{ currentPage-1 < 1 ? '&nbsp;' : currentPage-1 }}
         </a>
 
         <!--current--><a type="button" class="btn-2 active">{{currentPage}}</a>
 
-        <a [routerLink]="'/page/'+(currentPage+1)" 
+        <a [routerLink]="nextPageLink" 
         type="button" class="btn-2" [class.disabled]="currentPage === lastPage">
             {{ currentPage === lastPage ? '&nbsp;' : currentPage+1 }}
         </a>
 
-        <a [routerLink]="'/page/'+lastPage" type="button" class="btn-2" [class.disabled]="currentPage === lastPage">Last</a>
+        <a [routerLink]="lastLink" type="button" class="btn-2" [class.disabled]="currentPage === lastPage">Last</a>
     </div>
 </main>

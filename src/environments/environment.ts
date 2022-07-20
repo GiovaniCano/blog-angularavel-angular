@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   API_BASE_URL: '//127.0.0.1:8000/api/',
-  APP_NAME: 'Angular Blog'
+  APP_NAME: 'Angular Blog',
+  postsPerPage: 6
 };
 
 /*

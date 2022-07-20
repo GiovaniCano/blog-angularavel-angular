@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { Observable, Subscription, switchMap, take, tap } from 'rxjs';
+import { Observable, Subscription} from 'rxjs';
 import { validateImage } from 'src/app/forms-extensions/image.validator';
 import { mT } from 'src/app/helpers';
 import { Category } from 'src/app/interfaces';
@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UpdatePostComponent implements OnInit, OnDestroy {
   private updateSubs?: Subscription
-  private paramsAndPostSubs!: Subscription
+  private routeResolverSubs!: Subscription
 
   categories$: Observable<Category[]> = this._postService.getCategories()
 
@@ -94,12 +94,12 @@ export class UpdatePostComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.paramsAndPostSubs = this._route.params.pipe(
-      tap(params => this.postId = params['id']),
-      switchMap(params => this._postService.getPost(params['id']).pipe(
-        tap(post => this._title.setTitle(mT(`Edit: ${post.title}`))),
-      ))
-    ).subscribe(post => {
+    this.routeResolverSubs = this._route.data.subscribe(response => {
+      const post = response['post']
+
+      this._title.setTitle(mT(`Edit: ${post.title}`))
+      this.postId = post.id
+
       this.title.setValue(post.title)
       this.category_id.setValue(post.category_id)
       this.content.setValue(post.content)
@@ -108,8 +108,8 @@ export class UpdatePostComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.paramsAndPostSubs.unsubscribe()
     this.updateSubs?.unsubscribe()
+    this.routeResolverSubs.unsubscribe()
   }
 
 }

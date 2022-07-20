@@ -105,12 +105,17 @@
         box-shadow: $shadow-sm;
     }
 
-    // &:disabled {
-    //     background: $grey;
-    //     background: radial-gradient(farthest-corner at 30px 36px, $grey 0%, $white 180%);
-    //     cursor: unset;
-    //     &:hover {            
-    //         box-shadow: none;
-    //     }
-    // }
+    &:disabled, &.disabled {
+        background-color: transparent;
+        color: $grey;
+        border-color: $grey;
+        pointer-events: none;
+        user-select: none;
+        &:hover {
+            background-color: transparent;
+            color: $grey;
+            border-color: $grey;
+            box-shadow: none;
+        }
+    }
 }

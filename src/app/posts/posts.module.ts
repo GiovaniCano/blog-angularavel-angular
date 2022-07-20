@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { ModalsModule } from '../modals/modals.module';
+import { ByCategoryComponent } from './index/by-category/by-category.component';
 
 
 
@@ -17,7 +18,8 @@ import { ModalsModule } from '../modals/modals.module';
     IndexComponent,
     CreatePostComponent,
     ShowPostComponent,
-    UpdatePostComponent
+    UpdatePostComponent,
+    ByCategoryComponent
   ],
   imports: [
     CommonModule,
