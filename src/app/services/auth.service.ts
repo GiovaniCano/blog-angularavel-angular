@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, Observable, Subject, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Credentials, RegisterCredentials, Session } from '../interfaces';
 import { User } from '../models/user';
@@ -59,6 +59,10 @@ export class AuthService {
           this.setSession(false)
           this._waitFirstLoadForGuard.complete()
         },
+      }),
+      catchError(error=>{
+        if(error.status === 401) return EMPTY 
+        return throwError(()=>error)
       })
     ).subscribe()
   }
