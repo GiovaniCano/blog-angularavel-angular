@@ -37,6 +37,7 @@ export class CreatePostComponent implements OnDestroy {
     editable: true,
     minHeight: '20rem',
     placeholder: 'Start writing your post...',
+    rawPaste: true,
     toolbarHiddenButtons: [
       [
         'subscript',

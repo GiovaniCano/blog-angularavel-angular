@@ -1,31 +1,33 @@
-<main class="container-md">
-    <h1 *ngIf="category">{{category.name}}</h1>
+<ng-container *ngIf="(posts$ | async) as posts">
+    <main class="container-md">
+        <h1 *ngIf="category">{{category.name}}</h1>
 
-    <div id="posts-grid">
-        <div class="post" *ngFor="let post of (posts$ | async)">
-            <div id="h">
-                <h3>{{post.title}}</h3>
+        <div id="posts-grid">
+            <div class="post" *ngFor="let post of posts">
+                <div id="h">
+                    <h3>{{post.title}}</h3>
+                </div>
+                <figure><img [src]="baseImageUrl+post.image" alt="Post Image" width="300" height="100"></figure>
+                <a [routerLink]="'/post/read/'+post.id" class="btn-2">Read more</a>
             </div>
-            <figure><img [src]="baseImageUrl+post.image" alt="Post Image" width="300" height="100"></figure>
-            <a [routerLink]="'/post/read/'+post.id" class="btn-2">Read more</a>
         </div>
-    </div>
-    
-    <div id="pagination">
-        <a [routerLink]="firstLink" type="button" class="btn-2" [class.disabled]="currentPage <= 1">First</a>
+        
+        <div id="pagination">
+            <a [routerLink]="firstLink" type="button" class="btn-2" [class.disabled]="currentPage <= 1">First</a>
 
-        <a [routerLink]="prevPageLink" 
-        type="button" class="btn-2" [class.disabled]="currentPage <= 1">
-            {{ currentPage-1 < 1 ? '&nbsp;' : currentPage-1 }}
-        </a>
+            <a [routerLink]="prevPageLink" 
+            type="button" class="btn-2" [class.disabled]="currentPage <= 1">
+                {{ currentPage-1 < 1 ? '&nbsp;' : currentPage-1 }}
+            </a>
 
-        <!--current--><a type="button" class="btn-2 active">{{currentPage}}</a>
+            <!--current--><a type="button" class="btn-2 active">{{currentPage}}</a>
 
-        <a [routerLink]="nextPageLink" 
-        type="button" class="btn-2" [class.disabled]="currentPage === lastPage">
-            {{ currentPage === lastPage ? '&nbsp;' : currentPage+1 }}
-        </a>
+            <a [routerLink]="nextPageLink" 
+            type="button" class="btn-2" [class.disabled]="currentPage === lastPage">
+                {{ currentPage === lastPage ? '&nbsp;' : currentPage+1 }}
+            </a>
 
-        <a [routerLink]="lastLink" type="button" class="btn-2" [class.disabled]="currentPage === lastPage">Last</a>
-    </div>
-</main>
+            <a [routerLink]="lastLink" type="button" class="btn-2" [class.disabled]="currentPage === lastPage">Last</a>
+        </div>
+    </main>
+</ng-container>
